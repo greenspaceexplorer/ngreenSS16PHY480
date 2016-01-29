@@ -1,1 +1,1 @@
-# ngreenSS16PHY480
+Repository for SS16 PHY 480 projects

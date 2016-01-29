@@ -1,10 +1,11 @@
 //
-//  main.cpp
+//  poisson.cpp
 //  computationalPhysics1
 //
 //  Created by Curtis Rau on 1/15/16.
 //  Copyright © 2016 Curtis Rau. All rights reserved.
-//
+//  Last Modified by: Noah Green
+//  Date Last Modified:1/29/2016
 
 #include <iostream>
 #include <new>          // Is this necessary?
@@ -37,30 +38,32 @@ int main(int argc, const char* argv[]) {
     double h = L / N;                            // The step size;
     
     // Create the vectors representing the "A" matrix
-    int* a = new int[N-1];                               // todo: replace array with a constant             
-    for (int i = 0; i <= N-2; i++) {
+    double* a = new double[N];                               // todo: replace array with a constant             
+    for (int i = 0; i < N; i++) {
         a[i] = 1;
         //std::cout << a[i] << "\r";                    // For debugging purposes
     }
     
-    int* b = new int[N];                                // todo: replace array with a constant
-    for (int i = 0; i <= N-1; i++) {
+    double* b = new double[N];                                // todo: replace array with a constant
+    for (int i = 0; i < N; i++) {
         b[i] = -2;
         //std::cout << b[i] << "\r";                    // For debugging purposes
     }
     
-    int* c = new int[N-1];                              // todo: replace array with a constant
-    for (int i = 0; i <= N-2; i++) {
+    double* c = new double[N];                              // todo: replace array with a constant
+    for (int i = 0; i < N; i++) {
         c[i] = 1;
         //std::cout << c[i] << "\r";                    // For debugging purposes
     }
-    
+
+        
     // Create the source term vector "f"
     double* f = new double[N];
-    for (int i = 0; i <= N-1; i++) {
+    for (int i = 0; i < N; i++) {
         f[i] = source(i * h) * h * h;
         //std::cout << f[i] << "\r";                    // For debugging purposes
     }
+  
     
     // Setup solution vector "u"
     double* u = new double[N+1];
@@ -70,11 +73,12 @@ int main(int argc, const char* argv[]) {
     u[N] = 0;
     
     // Setup mystery vectors from online example
-    double* cStar = new double[N-1];
+    double* cStar = new double[N];
     double* fStar = new double[N];
     
     cStar[0] = c[0] / b[0];                             // May not be nceessary
     fStar[0] = f[0] / b[0];                             // May not be necessary
+    
     
     
     // Forward substitution
@@ -84,10 +88,12 @@ int main(int argc, const char* argv[]) {
         cStar[i] = c[i] * m;
         fStar[i] = (f[i] - a[i] * fStar[i-1]) * m;
     }
-    
+        
+
     delete [] a;
     delete [] b;
     delete [] c;
+    
     
     //std::cout << " Here comes the data";              // For debugging purposes
     
@@ -102,16 +108,16 @@ int main(int argc, const char* argv[]) {
     delete [] cStar;
     delete [] fStar;
     
-    std::cout << "Total computation time [s] = " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << "\r";
+    std::cout << "Total computation time [s] = " << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
     
     // Plot the solution
-    for (int i = 0; i <= N - 1; i = i+2) {
+    for (int i = 0; i < N; i = i+2) {
         double num = -10000 * u[i];
         //std:: cout << "Here's that val:" << num;      // For debugging purposes
         for (int i = 0; i < num; i++) {
             std::cout << "-";
         }
-        std::cout << "\r";
+        std::cout << std::endl;
     }
     
     delete [] u;
