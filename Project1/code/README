@@ -1,0 +1,2 @@
+-To build program, cd to its directory and type "make" in the terminal.
+-To add more .cpp program files, open "Makefile" and add them to the proper line (lines are commented)
