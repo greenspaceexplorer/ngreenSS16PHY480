@@ -11,12 +11,14 @@
 #include <new>          // Is this necessary?
 #include <math.h>       // exp squt 
 #include <time.h>
+#include <fstream>
 #include <vector_cls.hpp>
 
 //-----------------------------------------------------------------------------
 // Function Declarations
 //-----------------------------------------------------------------------------
-double source( double x);
+
+double source( double x );
 double solution( double x );
 void debug( int num );
 bool b_debug = false; //set to true for debugging flags
@@ -88,15 +90,22 @@ int main(int argc, const char* argv[]) {
 
     debug(7);
     
-    // Plot the solution
-    for (int i = 0; i < N; i = i+2) {
-      double num = -10000 * u.get(i);
-        for (int i = 0; i < num; i++) {
-            std::cout << "-";
-        }
-        std::cout << std::endl;
-    }
+    // Write the solution to file
+    ofstream solution_file( "sltn_dbl.txt", ios::out );
+
+    if( !solution_file ){
+      cout << "Error: file could not be opened" << endl;
+      exit(1);
+    } 
     
+    for( int j = 0; j < N; j++ ){
+      solution_file << j*h << "," 
+		    << solution(j*h) << "," 
+		    << u.get(j) << endl;
+    }
+
+    solution_file.close();
+
     debug(8);
 
     return 0;
