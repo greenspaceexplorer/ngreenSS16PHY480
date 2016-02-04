@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib.lines as line
 
 def get_coords(filename):
     """
@@ -46,9 +47,14 @@ def main():
     y_max = max( ( max(coords_tuple[1]), max(coords_tuple[2]) ) )
 
     # Make plot
-    plt.plot( coords_tuple[0], coords_tuple[1]\
-              , coords_tuple[0], coords_tuple[2] )
+    plt.plot( coords_tuple[0], coords_tuple[1], label = "Actual" )
+    plt.plot( coords_tuple[0], coords_tuple[2], label = "Calculated" )
     plt.axis( [x_min, x_max, y_min, y_max] )
+    plt.legend( loc = 7 )
+    plt.xlabel( 'x' )
+    plt.ylabel( 'y' )
+    plt.title( 'Exact and Calculated Solutions to Poisson Equation' )
     plt.show()
+    
 
 main()

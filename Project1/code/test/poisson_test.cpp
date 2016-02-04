@@ -80,8 +80,34 @@ int main(int argc, const char* argv[]) {
     std::cout << "Total computation time [s] = " 
 	      << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
 
-    debug(5);
+    debug(7);
+    
+    /*
+//-----------------------------------------------------------------------------
+// Alternate Solution
+//-----------------------------------------------------------------------------
 
+    // Solution Vector
+    vec<double> u(N+1,0.);
+
+   // Create the source term vector "f"
+    vec<double> f(N+1,0.); //todo: make vec constructor that accepts function as input
+    for(int i = 0; i <= N; i++) {
+      f.set(i, source(i * h) * h * h ); 
+    }
+
+    u.set( 1, -f.get(0) + 2*u.get(0) );
+    for(int j = 2; j < N; j++){
+      //      cout << "f(j-1): " << f.get(j-1)
+      //	   << "\nu(j-1): " << u.get(j-1)
+      //	   << "\nu(j-2): " << u.get(j-2) << endl;
+      u.set( j, -f.get(j-1) + 2*u.get(j-1) - u.get(j-2) );
+    }
+
+//-----------------------------------------------------------------------------
+// Alternate Solution
+//-----------------------------------------------------------------------------
+*/
     // Write the solution to file
     ofstream solution_file( "sltn_dbl.txt", ios::out );
 
