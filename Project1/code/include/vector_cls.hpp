@@ -1,7 +1,7 @@
 //Vector class for PHY 480 project 1 and beyond
 //Written by: Noah Green
 //Date: 1/29/2016
-//Last Modified: 1/31/2016
+//Last Modified: 2/6/2016
 
 #ifndef VECTOR_CLS_HPP
 #define VECTOR_CLS_HPP
@@ -15,17 +15,19 @@ using namespace std;
 //-----------------------------------------------------------------------------
 
 template<typename element>
-class vec{
+class vect{
   
- public:
+public:
   //default constructor
-  vec( int length, element fill ); 
+  vect( int length, element fill ); 
   //copy constructor
-  vec( const vec& other ); 
+  vect( const vect& other );
+  //function constructor: fill vect with discretized function values
+  vect( int length, element interval, element (*function)(element x) );
   //destructor
-  ~vec(); 
+  ~vect(); 
   //returns length of vector
-  int length(); 
+  int length() const; 
   //sets value of vector at index
   void set( int index, element value ); 
   //returns value of vector at index
@@ -33,88 +35,117 @@ class vec{
   //returns pointer to element at index
   element* operator[]( int index ); 
 
- private:
-  element *_vec;
+private:
+  element *_vect;
+  element _step;
+  element _interval;
   int _len;
 
 };
+
 
 //-----------------------------------------------------------------------------
 // Class Definitions
 //-----------------------------------------------------------------------------
 
 template< typename element >
-vec< element >::vec( int length, element fill ){
+vect< element >::vect( int length, element fill ){
   if( length == 0 ){
-    cout << "Error: vec must have a length" << endl;
+    cout << "Error: vect must have a length" << endl;
     exit(1);
   }
   if( length < 0 ){
-    cout << "Error: vec cannot have negative length" << endl;
+    cout << "Error: vect cannot have negative length" << endl;
     exit(1);
   }
   _len = length;
-  _vec = new element[_len];
+  _vect = new element[_len];
   for( int i = 0; i < _len; i++ ){
-    _vec[i] = fill;
+    _vect[i] = fill;
   }
 }
 
 //-----------------------------------------------------------------------------
 
 template< typename element >
-vec< element >::vec( const vec& other ){
+vect< element >::vect( const vect& other ){
   _len = other.length();
-  _vec = new element[_len];
+  _vect = new element[_len];
   for( int i = 0; i < _len; i++ ){
-    _vec[i] = other.get(i);
+    _vect[i] = other.get(i);
   }
 }
 
 //-----------------------------------------------------------------------------
+template< typename element >
+vect< element >::vect( int length, element interval
+		       , element (*function)(element x) ){
+   if( length == 0 ){
+    cout << "Error: vect must have a length" << endl;
+    exit(1);
+  }
+  if( length < 0 ){
+    cout << "Error: vect cannot have negative length" << endl;
+    exit(1);
+  }
+  // length of vector
+  _len = length;
+  // interval over which function is defined
+  _interval = interval;
+  // calculate step size
+  _step = _interval/(_len-1);
+  _vect = new element[_len];
+  for( int i = 0; i < _len; i++ ){
+    _vect[i] = function(i*_step);    
+  }
+
+}
+
+
+//-----------------------------------------------------------------------------
 
 template< typename element >
-vec< element >::~vec(){
-  if( _vec != 0 ){ delete [] _vec; }
+vect< element >::~vect(){
+  if( _vect != 0 ){ delete [] _vect; }
 }
 
 //-----------------------------------------------------------------------------
 
 template< typename element >
-int vec< element >::length(){ return _len; }
+int vect< element >::length() const { return _len; }
 
 //-----------------------------------------------------------------------------
 
 template< typename element >
-void vec< element >::set( int index, element value ){
+void vect< element >::set( int index, element value ){
   if( index >= _len || index < 0 ){
     cout << "Error: invalid index" << endl;
     exit(1);
   }
-  _vec[index] = value;
+  _vect[index] = value;
   return;
 }
 
 //-----------------------------------------------------------------------------
 
 template< typename element >
-element vec< element >::get( int index ) const { 
+element vect< element >::get( int index ) const { 
   if( index >= _len || index < 0 ){
     cout << "Error: invalid index" << endl;
     exit(1);
   }
-  return _vec[index];
+  return _vect[index];
 }
 
 //-----------------------------------------------------------------------------
 
 template< typename element >
-element* vec< element >::operator[]( int index ){
+element* vect< element >::operator[]( int index ){
   if( index >= _len || index < 0 ){
     cout << "Error: invalid index" << endl;
     exit(1);
   }
-  return &_vec[index];
+  return &_vect[index];
 
 }
 

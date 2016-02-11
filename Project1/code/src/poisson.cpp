@@ -2,7 +2,7 @@
 // PHY 480 Computational Physics
 // Authors: Noah Green and Curtis Rau
 // Last Modified by: Noah Green
-// Date Last Modified:2/4/2016
+// Date Last Modified: 2/6/2016
 
 #include <iostream>
 #include <new>          // Is this necessary?
@@ -12,6 +12,7 @@
 #include <sstream>
 #include <string>
 #include <vector_cls.hpp>
+#include <solver_tools.hpp>
 
 //-----------------------------------------------------------------------------
 // Function Declarations
@@ -19,8 +20,6 @@
 
 double source( double x );
 double solution( double x );
-void debug( int num );
-bool b_debug = false; //set to true for debugging flags
 
 //-----------------------------------------------------------------------------
 // Main Body
@@ -29,76 +28,34 @@ bool b_debug = false; //set to true for debugging flags
 // "argc" is the number of strings pointed to by "argv"
 int main(int argc, const char* argv[]) {
     
-    const clock_t begin_time = clock();
-
-    debug(0);    
-
     // Takes the first argument, converts it to an integer, and stores it as "n".
     // Default N = 100 if no argument given.
-    int hold;
+    int N;
     if( argc > 2 ){
       cout << "Error: invalid number of command line arguments" << endl;
       exit(1);	
     }
     else if( argc == 0 || argc == 1 ){
-      hold = 100;      
+      N = 100;      
     }
     else{
-      hold = atoi( argv[1] );
-    }
-    const int N = hold;   
-
-    double L = 1;                                // The length of the sample;
-    double h = L / N;                            // The step size;
-
-    debug(1);
-
-    // Create the source term vector "f"
-    vec<double> f(N+1,0.); //todo: make vec constructor that accepts function as input
-    for (int i = 0; i <= N; i++) {
-      f.set(i, source(i * h) * h * h ); 
+      N = atoi( argv[1] );
     }
 
-    // Forward Substitution Step
-    for( int i = 0; i <= N-1; i++ ){
-      f.set( i+1, f.get( i+1 ) + (i/(i+1.))*f.get( i ) );
-    }
-    debug(2);
-    // Backwards Substitution Step
-    for( int i = N-2; i >= 0; i-- ){
-      f.set( i, f.get(i) + ((i+2.)/(i+3.))*f.get(i+1));
-      //cout << "Step 2: " << f.get(i) << endl;
-    } 
-    debug(3);
-    for( int i = 0; i <= N; i++ ){
-      double tmp =  f.get(i)*(-(i+1.)/(i+2.));
-      f.set(i, tmp);
-    }
-    
-    debug(4);
+    // The length of the sample;
+    double L = 1;
 
+    // solver for poisson-specific gaussian elimination algorithm
+    solver gauss_decomp_fast( source, solution, L, N );
+    gauss_decomp_fast.gauss_elim_poisson();
+    vect<double> vec_gdf(gauss_decomp_fast.get_csol());
+  
+    // print computation time
     std::cout << "Total computation time [s] = " 
-	      << float( clock () - begin_time ) /  CLOCKS_PER_SEC << std::endl;
+   	      << gauss_decomp_fast.time() << endl;
 
-    debug(5);
-
-    // Write the solution to file
-    ofstream solution_file( "sltn_dbl.txt", ios::out );
-
-    if( !solution_file ){
-      cout << "Error: file could not be opened" << endl;
-      exit(1);
-    } 
-    
-    for( int j = 0; j <= N; j++ ){
-      solution_file << j*h << "," 
-		    << solution(j*h) << "," 
-		    << f.get(j) << endl;
-    }
-
-    solution_file.close();
-
-    debug(8);
+    // print reslts to file
+    gauss_decomp_fast.print_sol("sltn_dbl.txt");
 
     return 0;
 }
@@ -109,7 +66,7 @@ int main(int argc, const char* argv[]) {
 
 double source( double x )
 {
-    return -100* exp (-10 * x);
+    return 100* exp (-10 * x);
 }
 
 //-----------------------------------------------------------------------------
@@ -117,12 +74,4 @@ double source( double x )
 double solution( double x )
 {
   return 1 - ( 1 - exp(-10) ) * x - exp( -10 * x ) ;
-}
-
-//-----------------------------------------------------------------------------
-
-void debug( int num ){
-  if( b_debug ){
-    cout << "---------Debug[" << num << "]---------" << endl;
-  }
 }

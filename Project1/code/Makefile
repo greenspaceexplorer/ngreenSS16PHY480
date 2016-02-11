@@ -1,42 +1,25 @@
-#header file directory
 IDIR=include
-
-#header file names
-_DEPS=vector_cls.hpp
-DEPS=$(patsubst %,$(IDIR)/%,$(_DEPS))
-
-#source file directory
 SDIR=src
-
-#object file directory
-_ODIR=obj
-ODIR=$(SDIR)/$(_ODIR)
-
-#source (.cpp) file names
-_SOURCESC=poisson.cpp
-SOURCESC=$(patsubst %,$(SDIR)/%,$(_SOURCESC))
-_OBJECTSC=$(_SOURCESC:.cpp=.o)
-OBJECTSC=$(patsubst %,$(ODIR)/%,$(_OBJECTSC))
-
-#c++ compiler to be used
+DEPS=$(wildcard $(IDIR)/*.hpp)
+SOURCESC=$(wildcard $(SDIR)/*.cpp)
 CC=g++
-
-#Executable name
 EXECUTABLE=poisson_solve
-
-#libraries to link
 LIBS=
 
-#compiler flags
+OBJECTSC=$(SOURCESC:.cpp=.o)
+
 CFLAGS=-I$(IDIR)
 
-$(ODIR)/%.o: $(SOURCESC) $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+all: $(EXECUTABLE) $(SOURCESC) $(DEPS)
 
-$(EXECUTABLE):$(OBJECTSC)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
+$(EXECUTABLE): $(OBJECTSC)
+	$(CC) -o $@ $(OBJECTSC) $(CFLAGS) $(LIBS)
+
+.cpp.o:
+	$(CC) -c $(CFLAGS) $< -o $@
+
 
 .PHONY: clean
 
 clean:
-	rm -f $(ODIR)/*.o $(IDIR)/*~ $(EXECUTABLE) $(SDIR)/*~ /*~
+	rm -f $(SDIR)/*.o $(IDIR)/*~ $(EXECUTABLE) $(SDIR)/*~ /*~

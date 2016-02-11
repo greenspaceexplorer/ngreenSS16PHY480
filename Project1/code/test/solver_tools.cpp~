@@ -1,0 +1,43 @@
+// Project 1: Solver Class
+// PHY 480 Computational Physics
+// Authors: Noah Green and Curtis Rau
+// Last Modified by: Noah Green
+// Date Last Modified: 2/6/2016
+
+#include <solver_tools.hpp>
+
+//-----------------------------------------------------------------------------
+// Class Definitions
+//-----------------------------------------------------------------------------
+solver::solver( double (*source)( double x )
+		, double (*solution)( double x ), int num ){
+  N = num;
+  // construct source and solution vectors
+  _source = new vect<double>(N+1,source);
+  _solution = new vect<double>(N+1,solution);
+
+}
+
+solver::solver(){
+
+}
+
+//-----------------------------------------------------------------------------
+
+solver::~solver(){
+
+}
+
+//-----------------------------------------------------------------------------
+
+void solver::gauss_elim_poisson(){
+
+
+}
+
+//-----------------------------------------------------------------------------
+
+void solver::gauss_elim_tridiag(){
+
+}
+

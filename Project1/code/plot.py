@@ -41,10 +41,10 @@ def main():
     coords_tuple = get_coords( filename )
 
     # Get plot boundaries
-    x_min = min( coords_tuple[0] )
-    y_min = min( ( min(coords_tuple[1]), min(coords_tuple[2]) ) )
-    x_max = max( coords_tuple[0] )
-    y_max = max( ( max(coords_tuple[1]), max(coords_tuple[2]) ) )
+    x_min = 1.1*min( coords_tuple[0] )
+    y_min = 1.1*min( ( min(coords_tuple[1]), min(coords_tuple[2]) ) )
+    x_max = 1.1*max( coords_tuple[0] )
+    y_max = 1.1*max( ( max(coords_tuple[1]), max(coords_tuple[2]) ) )
 
     # Make plot
     plt.plot( coords_tuple[0], coords_tuple[1], label = "Actual" )
