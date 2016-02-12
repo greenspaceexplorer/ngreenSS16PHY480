@@ -1,7 +1,7 @@
 //Vector class for PHY 480 project 1 and beyond
 //Written by: Noah Green
 //Date: 1/29/2016
-//Last Modified: 2/6/2016
+//Last Modified: 2/11/2016
 
 #ifndef VECTOR_CLS_HPP
 #define VECTOR_CLS_HPP
@@ -77,22 +77,24 @@ vect< element >::vect( const vect& other ){
 }
 
 //-----------------------------------------------------------------------------
+
 template< typename element >
 vect< element >::vect( int length, element interval
 		       , element (*function)(element x) ){
-   if( length == 0 ){
-    cout << "Error: vect must have a length" << endl;
-    exit(1);
-  }
-  if( length < 0 ){
-    cout << "Error: vect cannot have negative length" << endl;
-    exit(1);
+  if( length < 2 ){
+    cout << 
+      
+      "Error: function vector must have length >= 2 (i.e. a start and a finish)." 
+	 
+	 << endl;
+    
+    exit(1);    
   }
   // length of vector
   _len = length;
   // interval over which function is defined
   _interval = interval;
-  // calculate step size
+  // calculate step size 
   _step = _interval/(_len-1);
   _vect = new element[_len];
   for( int i = 0; i < _len; i++ ){
@@ -100,7 +102,6 @@ vect< element >::vect( int length, element interval
   }
 
 }
-
 
 //-----------------------------------------------------------------------------
 

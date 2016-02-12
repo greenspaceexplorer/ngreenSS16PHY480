@@ -1,0 +1,18 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage[utf8]{inputenc}
+
+% Title Page
+\title{Numerical Solving of Poisson's Equation}
+\author{Noah Green \\ Partner: Curtis Rau}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\bibliographystyle{plain}
+\bibliography{ReportProject1.bib}
+\end{document}          

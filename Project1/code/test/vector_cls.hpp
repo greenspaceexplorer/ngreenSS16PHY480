@@ -1,7 +1,7 @@
 //Vector class for PHY 480 project 1 and beyond
 //Written by: Noah Green
 //Date: 1/29/2016
-//Last Modified: 1/31/2016
+//Last Modified: 2/11/2016
 
 #ifndef VECTOR_CLS_HPP
 #define VECTOR_CLS_HPP
@@ -22,12 +22,12 @@ public:
   vect( int length, element fill ); 
   //copy constructor
   vect( const vect& other );
-  //function constructor
+  //function constructor: fill vect with discretized function values
   vect( int length, element interval, element (*function)(element x) );
   //destructor
   ~vect(); 
   //returns length of vector
-  int length(); 
+  int length() const; 
   //sets value of vector at index
   void set( int index, element value ); 
   //returns value of vector at index
@@ -38,6 +38,7 @@ public:
 private:
   element *_vect;
   element _step;
+  element _interval;
   int _len;
 
 };
@@ -76,26 +77,31 @@ vect< element >::vect( const vect& other ){
 }
 
 //-----------------------------------------------------------------------------
+
 template< typename element >
 vect< element >::vect( int length, element interval
 		       , element (*function)(element x) ){
-   if( length == 0 ){
-    cout << "Error: vect must have a length" << endl;
-    exit(1);
+  if( length < 2 ){
+    cout << 
+      
+      "Error: function vector must have length>= 2 (i.e. a start and a finish)." 
+	 
+	 << endl;
+    
+    exit(1);    
   }
-  if( length < 0 ){
-    cout << "Error: vect cannot have negative length" << endl;
-    exit(1);
-  }
+  // length of vector
   _len = length;
-  _step = interval/length;
+  // interval over which function is defined
+  _interval = interval;
+  // calculate step size 
+  _step = _interval/(_len-1);
   _vect = new element[_len];
   for( int i = 0; i < _len; i++ ){
     _vect[i] = function(i*_step);    
   }
 
 }
-
 
 //-----------------------------------------------------------------------------
 
@@ -107,7 +113,7 @@ vect< element >::~vect(){
 //-----------------------------------------------------------------------------
 
 template< typename element >
-int vect< element >::length(){ return _len; }
+int vect< element >::length() const { return _len; }
 
 //-----------------------------------------------------------------------------
 

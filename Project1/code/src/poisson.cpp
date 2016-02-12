@@ -43,19 +43,30 @@ int main(int argc, const char* argv[]) {
     }
 
     // The length of the sample;
-    double L = 1;
+    double L = 1.;
 
     // solver for poisson-specific gaussian elimination algorithm
     solver gauss_decomp_fast( source, solution, L, N );
     gauss_decomp_fast.gauss_elim_poisson();
-    vect<double> vec_gdf(gauss_decomp_fast.get_csol());
-  
+    
     // print computation time
-    std::cout << "Total computation time [s] = " 
-   	      << gauss_decomp_fast.time() << endl;
-
+    cout << "GDF: Total computation time [s] = " 
+	 << gauss_decomp_fast.time() << endl;
+    
+    // solver for general tridiagonal problem
+    vect<double> a(N+1,-1);
+    vect<double> b(N+1, 2);
+    vect<double> c(N+1,-1);
+    solver gauss_decomp_gen( source, solution, a, b, c, L, N );
+    gauss_decomp_gen.gauss_elim_tridiag();
+    
+    // print computation time
+    cout << "GDG: Total computation time [s] = " 
+	 << gauss_decomp_gen.time() << endl;
+    
     // print reslts to file
-    gauss_decomp_fast.print_sol("sltn_dbl.txt");
+    gauss_decomp_fast.print_sol("SolutionCoordsGDF.txt");
+    gauss_decomp_gen.print_sol("SolutionCoordsGDG.txt");
 
     return 0;
 }

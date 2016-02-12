@@ -1,0 +1,2 @@
+SolutionCoordsGDF.txt
+SolutionCoordsGDG.txt
