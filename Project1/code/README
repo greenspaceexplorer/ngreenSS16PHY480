@@ -1,10 +1,18 @@
 For Python:
-    -After running "poisson_solve" type "python plot.py" to plot points
+    - Type "python SolutionPlot.py" to plot calculated and actual solutions
+    - Type "python ErrorPlot.py" to plot the relative error of solutions
 
 For C++:
     -To build program, cd to its directory and type "make" in the terminal.
-    -To add more .cpp program files, open "Makefile" and add them to the proper line (lines are commented)
+    	- this will compile everything in "/src" with header files in "/include"
     -To delete everything except the source files, type "make clean"
 
+Script Commands:
+   - Ensure proper permissions are given to *.sh files to run them (e.g. "chmod 755 clear.sh")
+   - Type "./clear.sh" to clear all files except source files
+   - Type "./run.sh" to ( compile and ) run the program over multiple grid sizes
+
 Requirements:
+	python 2.x
 	matplotlib
+	g++ (change name in makefile to use a different compiler)

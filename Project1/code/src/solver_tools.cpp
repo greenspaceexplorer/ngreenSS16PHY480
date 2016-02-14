@@ -1,40 +1,40 @@
 // Project 1: Solver Class
 // PHY 480 Computational Physics
-// Authors: Noah Green and Curtis Rau
-// Last Modified by: Noah Green
-// Date Last Modified: 2/11/2016
+// Author: Noah Green
+// Date: 2/10/2016
+// Date Last Modified: 2/12/2016
 
 #include "solver_tools.hpp"
 
 //-----------------------------------------------------------------------------
 // Class Definitions
 //-----------------------------------------------------------------------------
-solver::solver( double (*src)( double )
-		, double (*asolution)( double ), double interval, int num )
-  :_N(num), _interval(interval), _source(num+1,interval,src)
-  , _csolution(num+1,interval,src), _asolution(num+1,interval,asolution)
-  , _error(num+1,0.), tri_a(1,0.), tri_b(1,0.), tri_c(1,0.), _ctwidd(1,0.)
+
+solver::solver( double (*src)( double ), double (*asolution)( double )
+	, double step, int num )
+  :_N(num), _step(step), _asolution(num, 0.), _source(num, 0.)
+  , _error(num,0.), tri_a(1,0.), tri_b(1,0.), tri_c(1,0.)
+  , _ctwidd(1,0.), _csolution(num,0.)
 {
-  // calculate step size
-  _step = _interval/_N;
-  // multiply starting solution elements by _step^2 for algorithm
-  for( int i = 0; i < _csolution.length(); i++ ){
-    _csolution.set( i, _csolution.get(i) * _step * _step );
+  for( int i = 0; i < _N; i++ ){
+    _csolution.set( i, _step * _step * src( (i + 1) * _step) );
+    _asolution.set( i, asolution( (i + 1) * _step ) );
   }
+
   bsolved = false;
   berror = false;
-  _ssolver = "gauss_elim_poisson";
+  _ssolver = "lu_decomp";
 }
 
 //-----------------------------------------------------------------------------
 
 solver::solver( double (*src)( double ), double (*asolution)( double )
 		, vect<double> a, vect<double> b, vect<double> c
-		, double interval, int num )
-  :_N(num), _interval(interval), _source(num+1,interval,src)
-  , _csolution(num+1, 0.), _ctwidd(num+1,interval,src)
-  , _asolution(num+1,interval,asolution)
-  , tri_a(a), tri_b(b), tri_c(c), _error(num+1,0.)
+		, double step, int num )
+  :_N(num), _step(step), _source(num+2,step,src)
+  , _csolution(num+2, 0.), _ctwidd(num+1,step,src)
+  , _asolution(num+2,step,asolution)
+  , tri_a(a), tri_b(b), tri_c(c), _error(num+2,0.)
 {
   // check that diagonals have proper dimensions
   if( ( tri_a.length() < _N+1 ) ||
@@ -43,14 +43,12 @@ solver::solver( double (*src)( double ), double (*asolution)( double )
     cout << "Error: insufficient diagonal dimensions." << endl;
     exit(1);
   }
-  tri_a.set(1,0.);
-  tri_c.set(num,0.);
-  // calculate step size
-  _step = _interval/_N;
+
   // multiply starting solution elements by _step^2 for algorithm
   for( int i = 0; i < _ctwidd.length(); i++ ){
     _ctwidd.set( i, _ctwidd.get(i) * _step * _step );
   }  
+  _ctwidd.set(0, 0.);
   bsolved = false;
   berror = false;
   _ssolver = "gauss_elim_tridiag";
@@ -61,51 +59,6 @@ solver::solver( double (*src)( double ), double (*asolution)( double )
 
 solver::~solver(){
 
-}
-
-//-----------------------------------------------------------------------------
-
-void solver::gauss_elim_poisson(){
-  // ensure proper constructor called
-  if( _ssolver != "gauss_elim_poisson" ){
-    cout << "Error: solver constructor mismatch." << endl;
-    exit(1);
-  }
-
-  // Protection against solving more than once
-  if( bsolved ){
-    cout << "Error: Problem has already been solved." << endl;
-    exit(1);
-  }
-
-  _time = clock();
-
-  // ---------start algorithm------------
-
-  // Forward Substitution Step
-  for( int i = 0; i < _csolution.length()-1; i++ ){
-    _csolution.set( i+1, _csolution.get( i+1 ) + (i/(i+1.))*_csolution.get( i ) );
-  }
-
-  // Backwards Substitution Step
-  for( int i = _csolution.length()-2; i >= 0; i-- ){
-    _csolution.set( i, _csolution.get(i) + ((i+2.)/(i+3.))*_csolution.get(i+1));
-  } 
-
-  for( int i = 0; i < _csolution.length(); i++ ){
-    _csolution.set(i, _csolution.get(i)*((i+1.)/(i+2.)));
-  }
-
-  // Ensure boundary conditions
-  _csolution.set(0,0.);
-  _csolution.set(_N,0);
-
-  // -----------end algorithm-------------
-
-  // calculate time for solution
-  _time = clock()-_time;
-
-  bsolved = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -124,17 +77,17 @@ void solver::gauss_elim_tridiag(){
     exit(1);
   }
 
-  // temporary vector for algorithm
-  vect<double> vect_temp( _csolution.length(), 0. );
-
   _time = clock();
 
   // ---------start algorithm------------
 
+  // temporary vector for algorithm
+  vect<double> vect_temp( _N+1, 0. );
+
   // forward substitution
   double b_temp = tri_b.get(1);
   _csolution.set( 1, _ctwidd.get(1)/b_temp );
-  for( int i = 2; i < _csolution.length(); i++){
+  for( int i = 2; i < _N+1; i++){
     vect_temp.set( i, tri_c.get(i-1)/b_temp );
     b_temp = tri_b.get(i) - tri_a.get(i)*vect_temp.get(i);
     _csolution.set( i, 
@@ -143,14 +96,14 @@ void solver::gauss_elim_tridiag(){
   }
 
   // backwards substitution
-  for( int i = _csolution.length()-2; i >= 1; i-- ){
+  for( int i = _N-1; i >= 1; i-- ){
     _csolution.set( i, _csolution.get(i) 
 		    - vect_temp.get(i+1)*_csolution.get(i+1) );
   }
 
   // Ensure boundary conditions
   _csolution.set(0,0.);
-  _csolution.set(_N,0);
+  _csolution.set(_csolution.length()-1,0);
 
   // -----------end algorithm-------------
 
@@ -159,6 +112,70 @@ void solver::gauss_elim_tridiag(){
 
   bsolved = true;
   
+}
+
+//-----------------------------------------------------------------------------
+
+void solver::lu_decomp(){
+   // ensure proper constructor called
+  if( _ssolver != "lu_decomp" ){
+    cout << "Error: solver constructor mismatch." << endl;
+    exit(1);
+  }
+
+  // Protection against solving more than once
+  if( bsolved ){
+    cout << "Error: Problem has already been solved." << endl;
+    exit(1);
+  }
+
+  // build tridiagonal matrix
+  double **TDM;
+  TDM = new double*[_N];
+  for (int i = 0; i < _N; i++){
+    TDM[i] = new double[_N];
+  }
+  for (int i = 0; i < _N; i++){
+    for (int j = 0; j < _N; j++){
+      if (i==j){
+	TDM[i][j]=2.0;
+      }
+      else if (i==j+1 || j == i+1){
+	TDM[i][j]=-1.0;
+      }
+      else{
+	TDM[i][j]=0.0;
+      }
+    }
+  }
+
+  // variables for lu decomp algorithm
+  int *index;
+  index = new int[_N];
+  double d;
+  
+  _time = clock(); 
+
+  // ---------start algorithm------------
+
+  // matrix lu decomposition step
+  ludcmp( TDM, _N, index, &d );
+  // backwards substitution step
+  lubksb( TDM, _N, index, _csolution[0] );
+
+  // -----------end algorithm-------------
+
+  // calculate time for solution
+  _time = clock()-_time;
+
+  // clear pointers
+  for( int i = 0; i < _N; i++ ){
+    delete[] TDM[i];
+  }
+  delete[] TDM;
+  delete[] index;
+
+  bsolved = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -204,7 +221,7 @@ void solver::print_sol(string filename){
   ofstream solution_file( filename.c_str(), ios::out );
   // check if file was successfully opened 
   if( !solution_file ){
-    cout << "Error: file could not be opened" << endl;
+    cout << "Error: file could not be opened." << endl;
     exit(1);
   } 
 
@@ -212,11 +229,21 @@ void solver::print_sol(string filename){
   if(!berror){ error_all(); }
 
   // write to file (x, y_actual, y_calculated, error) 
-  for( int j = 0; j < _N+1; j++ ){
-    solution_file << j*_step << "," 
-		  << _asolution.get(j) << ","
-		  << _csolution.get(j) << ","
-		  << _error.get(j)     << endl;
+  if( _ssolver == "lu_decomp" ){
+    for( int j = 0; j < _csolution.length(); j++ ){
+      solution_file << (j+1.)*_step << "," 
+		    << _asolution.get(j) << ","
+		    << _csolution.get(j) << ","
+		    << _error.get(j)     << endl;
+    }
+  }
+  else{
+    for( int j = 0; j < _csolution.length(); j++ ){
+      solution_file << j*_step << "," 
+		    << _asolution.get(j) << ","
+		    << _csolution.get(j) << ","
+		    << _error.get(j)     << endl;
+    }
   }
   // close the file
   solution_file.close();
@@ -228,7 +255,7 @@ void solver::print_sol(string filename){
 double solver::error( double act, double calc ){
   // divide by zero protection
   if( act == 0 ){ return 0.;}
-  return sqrt(( calc - act )*( calc - act ) / (act*act)) ;
+  return log10(fabs(( calc - act ) / act));
 }
 
 //-----------------------------------------------------------------------------
@@ -240,7 +267,7 @@ void solver::error_all(){
     exit(1);
   }
   // fill error vector
-  for( int i = 0; i < _csolution.length(); i++ ){
+  for( int i = 1; i < _csolution.length()-1; i++ ){
     _error.set( i, error( _asolution.get(i), _csolution.get(i) ) );
   }
   berror = true;
@@ -259,10 +286,13 @@ double solver::error_max(){
   if(!berror){ error_all(); }
 
   // initialize max error at 0
-  double max_error = 0.;    
+  double max_error = -1e8;    
 
   // iterate over error vector; replace max error if larger than current value
   for( int i = 0; i < _error.length(); i++ ){
+    // skip divide-by-zero error calculations
+    if( _error.get(i) == 0 ){ continue; }
+    // comparison step
     if( _error.get(i) > max_error ){
       max_error = _error.get(i);
     }

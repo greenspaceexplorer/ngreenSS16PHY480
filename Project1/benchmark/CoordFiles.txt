@@ -1,0 +1,2 @@
+SolutionCoords_GDG_N2000.txt
+SolutionCoords_LU_N2000.txt

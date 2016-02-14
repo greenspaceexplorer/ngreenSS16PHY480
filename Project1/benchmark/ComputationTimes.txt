@@ -1,0 +1,14 @@
+LU( N = 5 ): Total computation time [s] = 8e-06
+GDG( N = 5 ): Total computation time [s] = 1e-06
+LU( N = 10 ): Total computation time [s] = 9e-06
+GDG( N = 10 ): Total computation time [s] = 1e-06
+LU( N = 50 ): Total computation time [s] = 0.000305
+GDG( N = 50 ): Total computation time [s] = 8e-06
+LU( N = 100 ): Total computation time [s] = 0.002214
+GDG( N = 100 ): Total computation time [s] = 9e-06
+LU( N = 500 ): Total computation time [s] = 0.262913
+GDG( N = 500 ): Total computation time [s] = 4.8e-05
+LU( N = 1000 ): Total computation time [s] = 2.42907
+GDG( N = 1000 ): Total computation time [s] = 8.9e-05
+LU( N = 10000 ): Total computation time [s] = 3484.14
+GDG( N = 10000 ): Total computation time [s] = 0.000888

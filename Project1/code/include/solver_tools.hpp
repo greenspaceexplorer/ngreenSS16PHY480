@@ -1,16 +1,16 @@
 // Project 1: Solver Tool Class
 // PHY 480 Computational Physics
-// Authors: Noah Green and Curtis Rau
-// Last Modified by: Noah Green
-// Date Last Modified: 2/6/2016
-//
-// Note: NG or CR denotes function written by Noah Green or Curtis Rau 
-//       respecitvely
+// Author: Noah Green
+// Date: 2/10/2016
+// Date Last Modified: 2/12/2016
+
+
 
 #ifndef SOLVER_TOOLS_HPP
 #define SOLVER_TOOLS_HPP
 
 #include "vector_cls.hpp"
+#include "lib.h"
 #include <time.h>
 #include <fstream>
 #include <sstream>
@@ -24,49 +24,47 @@
 class solver{
 
 public:
-  // constructor for gauss_elim_poisson: NG
+  // constructor for lu_decomp
   solver( double (*src)( double ), double (*asolution)( double )
-	  , double interval, int num );
-  
-  // constructor for gauss_elim_tridiag: NG
+	  , double step, int num );
+
+  // constructor for gauss_elim_tridiag
   solver( double (*src)( double ), double (*asolution)( double )
 	  , vect<double> a, vect<double> b, vect<double> c
-	  , double interval, int num );
+	  , double step, int num );
   
-  // destructor: NG
+  // destructor
   ~solver();
-  // Gaussian elimination algorithm specifically for poisson equation: NG
-  void gauss_elim_poisson();
-  // Gaussian elimination algorithm for general tridiagonal matrix: NG
+  // Gaussian elimination algorithm specifically for poisson equation
+  //  void gauss_elim_poisson();
+  // Gaussian elimination algorithm for general tridiagonal matrix
   void gauss_elim_tridiag();
-  // LU decomposition solver using armadillo: NG
-  void lu_decompadillo();
-  // get source vector: NG
+  // LU decomposition solver
+  void lu_decomp();
+  // get source vector
   vect<double> get_src();
-  // get analytical solution: NG
+  // get analytical solution
   vect<double> get_asol();
-  // get calculated solution: NG
+  // get calculated solution
   vect<double> get_csol();
-  // time to solve problem: NG
+  // time to solve problem
   float time();
-  // print solution to a text file (csv format): NG
+  // print solution to a text file (csv format)
   void print_sol( string filename );
-  // calculate error between given points: NG
+  // calculate error between given points
   double error( double act, double calc );
-  // calculate all errors: NG
+  // calculate all errors
   void error_all();
-  // return maximum error: NG
+  // return maximum error
   double error_max();
-  // return vector of errors b/w all points: NG
+  // return vector of errors b/w all points
   vect<double> error_vec();
   
 
 private:
   // number of steps in function discretization
   int _N;
-  // interval over which function is defined
-  double _interval;
-  // step size defined as interval/number of steps
+  // step size
   double _step;
   // timer variable
   clock_t _time;

@@ -20,6 +20,13 @@ int main(){
 
   vect<double> vec_f(length,interval, square);
   cout << "vec_f.get(3): " << vec_f.get(3) << endl;
+  
+  double* vec;
+  vec = vec_f[0];
+  cout << "Pointer Test:" << endl;
+  for( int i = 0; i < vec_f.length(); i++){
+    cout << vec[i] << endl;
+  }
 
   return 0;
 }

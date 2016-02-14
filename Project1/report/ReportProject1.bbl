@@ -1,0 +1,17 @@
+\begin{thebibliography}{}
+
+\bibitem[Duxbury and Hjorth-Jensen, 2016]{Dux:2016}
+Duxbury, P. and Hjorth-Jensen, M. (2016).
+\newblock Msu computational physics (phy480/905) course material.
+
+\bibitem[Hunter, 2007]{Hunter:2007}
+Hunter, J.~D. (2007).
+\newblock Matplotlib: A 2d graphics environment.
+\newblock {\em Computing In Science \& Engineering}, 9(3):90--95.
+
+\bibitem[Landau et~al., 2008]{Landau:2008}
+Landau, R., P\'{a}ez, M., and Bordeianu, C. (2008).
+\newblock {\em A Survey of Computational Physics}.
+\newblock Princeton University Press, Princeton, NJ.
+
+\end{thebibliography}

@@ -1,12 +1,13 @@
 // Project 1: Poisson Equation Solver
 // PHY 480 Computational Physics
-// Authors: Noah Green and Curtis Rau
+// Author: Noah Green
 // Last Modified by: Noah Green
+// Date: 1/14/2016
 // Date Last Modified: 2/6/2016
 
 #include <iostream>
-#include <new>          // Is this necessary?
-#include <math.h>       // exp squt 
+#include <new>    
+#include <math.h> 
 #include <time.h>
 #include <fstream>
 #include <sstream>
@@ -44,29 +45,68 @@ int main(int argc, const char* argv[]) {
 
     // The length of the sample;
     double L = 1.;
+    double step = L/(N+1);
 
-    // solver for poisson-specific gaussian elimination algorithm
-    solver gauss_decomp_fast( source, solution, L, N );
-    gauss_decomp_fast.gauss_elim_poisson();
+    // strings for naming output files
+    string sln_name = "SolutionCoords";
+    string ext_name = ".txt";
+
+
+    //=================================================================
+    // solver for lu decomposition algorithm
+    //=================================================================
+
+    solver lu_decompose( source, solution, step, N );
+    lu_decompose.lu_decomp();
+
+    // build filename
+    string lu_name = "_LU";    
+    stringstream lu_stream;
+    lu_stream << sln_name << lu_name << "_N" << N << ext_name;
     
-    // print computation time
-    cout << "GDF: Total computation time [s] = " 
-	 << gauss_decomp_fast.time() << endl;
-    
+    // print computation time and max error
+    cout << "LU( N = " << N << " ): Time [s] = " 
+	 << lu_decompose.time() << "\tLog10 Max Error = "
+	 << lu_decompose.error_max() << endl;
+
+    //=================================================================
     // solver for general tridiagonal problem
+    //=================================================================
+
     vect<double> a(N+1,-1);
     vect<double> b(N+1, 2);
     vect<double> c(N+1,-1);
-    solver gauss_decomp_gen( source, solution, a, b, c, L, N );
+    solver gauss_decomp_gen( source, solution, a, b, c, step, N );
     gauss_decomp_gen.gauss_elim_tridiag();
-    
-    // print computation time
-    cout << "GDG: Total computation time [s] = " 
-	 << gauss_decomp_gen.time() << endl;
-    
-    // print reslts to file
-    gauss_decomp_fast.print_sol("SolutionCoordsGDF.txt");
-    gauss_decomp_gen.print_sol("SolutionCoordsGDG.txt");
+
+    // build filename
+    string gdg_name = "_GDG";    
+    stringstream gdg_stream;
+    gdg_stream << sln_name << gdg_name << "_N" << N << ext_name;
+
+    // print computation time and max error
+    cout << "GDG( N = " << N << " ): Time [s] = " 
+    	 << gauss_decomp_gen.time() << "\tLog10 Max Error = "
+    //      cout << N << "\t" 
+	 << gauss_decomp_gen.error_max() << endl;
+
+    //=================================================================
+    // program output
+    //=================================================================
+
+    gauss_decomp_gen.print_sol(gdg_stream.str());
+    lu_decompose.print_sol(lu_stream.str());
+
+    // record names of solution files
+    ofstream solution_names("CoordFiles.txt");
+    if( !solution_names ){
+      cout << "Error: file could not be opened." << endl;
+      exit(1);
+    }
+    solution_names << gdg_stream.str() << endl 
+		   << lu_stream.str()
+		   << endl;
+    solution_names.close();
 
     return 0;
 }
@@ -77,12 +117,12 @@ int main(int argc, const char* argv[]) {
 
 double source( double x )
 {
-    return 100* exp (-10 * x);
+    return 100.* exp (-10. * x);
 }
 
 //-----------------------------------------------------------------------------
 
 double solution( double x )
 {
-  return 1 - ( 1 - exp(-10) ) * x - exp( -10 * x ) ;
+  return 1. - ( 1. - exp(-10.) ) * x - exp( -10. * x ) ;
 }

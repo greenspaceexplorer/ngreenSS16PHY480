@@ -23,7 +23,7 @@ public:
   //copy constructor
   vect( const vect& other );
   //function constructor: fill vect with discretized function values
-  vect( int length, element interval, element (*function)(element x) );
+  vect( int length, element step, element (*function)(element x) );
   //destructor
   ~vect(); 
   //returns length of vector
@@ -79,7 +79,7 @@ vect< element >::vect( const vect& other ){
 //-----------------------------------------------------------------------------
 
 template< typename element >
-vect< element >::vect( int length, element interval
+vect< element >::vect( int length, element step
 		       , element (*function)(element x) ){
   if( length < 2 ){
     cout << 
@@ -92,10 +92,9 @@ vect< element >::vect( int length, element interval
   }
   // length of vector
   _len = length;
-  // interval over which function is defined
-  _interval = interval;
-  // calculate step size 
-  _step = _interval/(_len-1);
+  // step size
+  _step = step;
+  // build vector
   _vect = new element[_len];
   for( int i = 0; i < _len; i++ ){
     _vect[i] = function(i*_step);    
