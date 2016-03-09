@@ -26,14 +26,10 @@ def get_coords(filename):
     
     # Split line into coordinates and store in lists
     x = []
-    y_act = []
-    y_calc = []
-    y_error = []
+    y = []
     for coord_string in coord_list:
         tmp_list = coord_string.split(",")
-        x.append(       float( tmp_list[0] ) )
-        y_act.append(   float( tmp_list[1] ) )
-        y_calc.append(  float( tmp_list[2] ) )
-        y_error.append( float( tmp_list[3] ) )
+        x.append( float( tmp_list[0] ) )
+        y.append( float( tmp_list[1] ) )
     
     return ( x, y_act, y_calc, y_error )

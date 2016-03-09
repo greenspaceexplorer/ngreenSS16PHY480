@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{dux:2016}
+Phil Duxbury and Morten Hjorth-Jensen.
+\newblock Msu computational physics (phy480/905) course material.
+\newblock 2016.
+
+\bibitem{Galassi:2015}
+M.~Galassi and et~al.
+\newblock {\em GNU Scientific Library Reference Manual}.
+\newblock 3 edition, 2015.
+
+\bibitem{Hunter:2007}
+J.~D. Hunter.
+\newblock Matplotlib: A 2d graphics environment.
+\newblock {\em Computing In Science \& Engineering}, 9(3):90--95, 2007.
+
+\bibitem{Landau:2008}
+Rubin Landau, Manuel P\'{a}ez, and Cristian Bordeianu.
+\newblock {\em A Survey of Computational Physics}.
+\newblock Princeton University Press, Princeton, NJ, 2008.
+
+\bibitem{Taut:1993}
+M.~Taut.
+\newblock Two electrons in an external oscillator potential: Particular
+  analytical solutions of a coulomb correlation problem.
+\newblock {\em Phys. Rev. A}, 1993.
+
+\end{thebibliography}

@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ReportProject2.aux
+The style file: plain.bst
+Database file #1: ReportProject2.bib.bib
+Warning--empty note in dux:2016
+Warning--empty publisher in Galassi:2015
+You've used 5 entries,
+            2118 wiz_defined-function locations,
+            528 strings with 4659 characters,
+and the built_in function-call counts, 1262 in all, are:
+= -- 119
+> -- 58
+< -- 0
++ -- 24
+- -- 18
+* -- 76
+:= -- 232
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 23
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 51
+empty$ -- 98
+format.name$ -- 18
+if$ -- 251
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 6
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 27
+preamble$ -- 1
+purify$ -- 19
+quote$ -- 0
+skip$ -- 33
+stack$ -- 0
+substring$ -- 45
+swap$ -- 4
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 16
+warning$ -- 2
+while$ -- 12
+width$ -- 6
+write$ -- 53
+(There were 2 warnings)
