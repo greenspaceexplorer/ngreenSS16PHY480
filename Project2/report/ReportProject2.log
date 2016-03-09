@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.15)  9 MAR 2016 13:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.11.15)  9 MAR 2016 13:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -597,12 +597,8 @@ File: SeHoRtest.png Graphic file (type png)
  <use SeHoRtest.png>
 Package pdftex.def Info: SeHoRtest.png used on input line 313.
 (pdftex.def)             Requested size: 260.17464pt x 195.1272pt.
-
-
-LaTeX Warning: Reference `dehoeval' on page 11 undefined on input line 318.
-
-[11 <./SeHoIterTest.png>] [12 <./SeHoNtest.png> <./SeHoRtest.png>] [13]
-[14] [15]
+ [11 <./SeHoIterTest.png>] [12 <./SeHoNtest.png> <./SeHoRtest.png>] [13] [14] [
+15]
 Appendix A.
 <SeHoWfWr001.png, id=79, 578.16pt x 433.62pt>
 File: SeHoWfWr001.png Graphic file (type png)
@@ -736,33 +732,30 @@ physics
 
 ) [21
 
-] (./ReportProject2.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+] (./ReportProject2.aux) ) 
 Here is how much of TeX's memory you used:
- 3266 strings out of 493304
- 44400 string characters out of 6139870
+ 3265 strings out of 493304
+ 44390 string characters out of 6139870
  116291 words of memory out of 5000000
- 6632 multiletter control sequences out of 15000+600000
+ 6631 multiletter control sequences out of 15000+600000
  14829 words of font info for 59 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,12n,31p,1205b,319s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ReportProject2.pdf (23 pages, 664950 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msbm10.pfb>
+Output written on ReportProject2.pdf (23 pages, 664735 bytes).
 PDF statistics:
  159 PDF objects out of 1000 (max. 8388607)
  95 compressed objects within 1 object stream
