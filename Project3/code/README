@@ -1,0 +1,8 @@
+To run program:
+   -Type "make"
+   -run with "./SolarSolve"
+
+Dependencies:
+   -g++
+   -Root version 6+
+    	 -Download for free at root.cern.ch
