@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.14)  6 APR 2016 23:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.14)  7 APR 2016 17:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -385,21 +385,32 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
-(./ReportProject3.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count105
+\FV@InFile=\read1
+\FV@TabBox=\box29
+\c@FancyVerbLine=\count106
+\FV@StepNumber=\count107
+\FV@OutFile=\write3
+) (./ReportProject3.aux)
 \openout1 = `ReportProject3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -437,16 +448,16 @@ LaTeX Font Info:    ... okay on input line 14.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count105
+\scratchcounter=\count108
 \scratchdimen=\dimen126
-\scratchbox=\box29
-\nofMPsegments=\count106
-\nofMParguments=\count107
+\scratchbox=\box30
+\nofMPsegments=\count109
+\nofMParguments=\count110
 \everyMPshowfont=\toks23
-\MPscratchCnt=\count108
+\MPscratchCnt=\count111
 \MPscratchDim=\dimen127
-\MPnumerator=\count109
-\makeMPintoPDFobject=\count110
+\MPnumerator=\count112
+\makeMPintoPDFobject=\count113
 \everyMPtoPDFconversion=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -516,52 +527,186 @@ LaTeX Info: Redefining \selectfont on input line 126.
 \RaggedRightParindent=\skip58
 \JustifyingParindent=\skip59
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 20.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
+LaTeX Font Info:    Try loading font information for U+msa on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
+LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] [2] [3] [4]
+<ESRK4_position.pdf, id=28, 569.12625pt x 546.04pt>
+File: ESRK4_position.pdf Graphic file (type pdf)
+ <use ESRK4_position.pdf>
+Package pdftex.def Info: ESRK4_position.pdf used on input line 164.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+Underfull \hbox (badness 1742) in paragraph at lines 167--167
+[][]\OT1/cmr/m/n/12 : |Plot of Earth's po-si-tion in
+ []
+
+<ESVerlet_position.pdf, id=29, 569.12625pt x 546.04pt>
+File: ESVerlet_position.pdf Graphic file (type pdf)
+
+<use ESVerlet_position.pdf>
+Package pdftex.def Info: ESVerlet_position.pdf used on input line 171.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+Underfull \hbox (badness 1742) in paragraph at lines 174--174
+[][]\OT1/cmr/m/n/12 : |Plot of Earth's po-si-tion in
+ []
+
+<Escape_plot.pdf, id=30, 569.12625pt x 546.04pt>
+File: Escape_plot.pdf Graphic file (type pdf)
+ <use Escape_plot.pdf>
+Package pdftex.def Info: Escape_plot.pdf used on input line 181.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJFRK4_Earths.pdf, id=31, 569.12625pt x 546.04pt>
+File: ESJFRK4_Earths.pdf Graphic file (type pdf)
+ <use ESJFRK4_Earths.pdf>
+Package pdftex.def Info: ESJFRK4_Earths.pdf used on input line 190.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJFVerlet_Earths.pdf, id=32, 569.12625pt x 546.04pt>
+File: ESJFVerlet_Earths.pdf Graphic file (type pdf)
+
+<use ESJFVerlet_Earths.pdf>
+Package pdftex.def Info: ESJFVerlet_Earths.pdf used on input line 197.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+ [5] [6 <./ESRK4_position.pdf, page is rotated 90 degrees> <./ESVerlet_position
+.pdf, page is rotated 90 degrees>] [7 <./Escape_plot.pdf, page is rotated 90 de
+grees> <./ESJFRK4_Earths.pdf, page is rotated 90 degrees>] [8 <./ESJFVerlet_Ear
+ths.pdf, page is rotated 90 degrees>]
 Appendix A.
-(./ReportProject3.bbl [2
+<ESRK4_ke.pdf, id=262, 569.12625pt x 546.04pt>
+File: ESRK4_ke.pdf Graphic file (type pdf)
+ <use ESRK4_ke.pdf>
+Package pdftex.def Info: ESRK4_ke.pdf used on input line 214.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESVerlet_ke.pdf, id=263, 569.12625pt x 546.04pt>
+File: ESVerlet_ke.pdf Graphic file (type pdf)
+ <use ESVerlet_ke.pdf>
+Package pdftex.def Info: ESVerlet_ke.pdf used on input line 221.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESRK4_pe.pdf, id=264, 569.12625pt x 546.04pt>
+File: ESRK4_pe.pdf Graphic file (type pdf)
+ <use ESRK4_pe.pdf>
+Package pdftex.def Info: ESRK4_pe.pdf used on input line 229.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESVerlet_pe.pdf, id=265, 569.12625pt x 546.04pt>
+File: ESVerlet_pe.pdf Graphic file (type pdf)
+ <use ESVerlet_pe.pdf>
+Package pdftex.def Info: ESVerlet_pe.pdf used on input line 236.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESRK4_l.pdf, id=266, 569.12625pt x 546.04pt>
+File: ESRK4_l.pdf Graphic file (type pdf)
+ <use ESRK4_l.pdf>
+Package pdftex.def Info: ESRK4_l.pdf used on input line 243.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESVerlet_l.pdf, id=267, 569.12625pt x 546.04pt>
+File: ESVerlet_l.pdf Graphic file (type pdf)
+ <use ESVerlet_l.pdf>
+Package pdftex.def Info: ESVerlet_l.pdf used on input line 252.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+ [9
 
 ]
+[10 <./ESRK4_ke.pdf, page is rotated 90 degrees> <./ESVerlet_ke.pdf, page is ro
+tated 90 degrees>] [11 <./ESRK4_pe.pdf, page is rotated 90 degrees> <./ESVerlet
+_pe.pdf, page is rotated 90 degrees>] [12 <./ESRK4_l.pdf, page is rotated 90 de
+grees> <./ESVerlet_l.pdf, page is rotated 90 degrees>]
+Appendix B.
+<ESJFRK4_reg.pdf, id=540, 569.12625pt x 546.04pt>
+File: ESJFRK4_reg.pdf Graphic file (type pdf)
+ <use ESJFRK4_reg.pdf>
+Package pdftex.def Info: ESJFRK4_reg.pdf used on input line 261.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJFRK4_x10.pdf, id=541, 569.12625pt x 546.04pt>
+File: ESJFRK4_x10.pdf Graphic file (type pdf)
+ <use ESJFRK4_x10.pdf>
+Package pdftex.def Info: ESJFRK4_x10.pdf used on input line 268.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJFRK4_x1000.pdf, id=542, 569.12625pt x 546.04pt>
+File: ESJFRK4_x1000.pdf Graphic file (type pdf)
+ <use ESJFRK4_x1000.pdf>
+Package pdftex.def Info: ESJFRK4_x1000.pdf used on input line 275.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJFVerlet_reg.pdf, id=543, 569.12625pt x 546.04pt>
+File: ESJFVerlet_reg.pdf Graphic file (type pdf)
+ <use ESJFVerlet_reg.pdf>
+Package pdftex.def Info: ESJFVerlet_reg.pdf used on input line 282.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJFVerlet_x10.pdf, id=544, 569.12625pt x 546.04pt>
+File: ESJFVerlet_x10.pdf Graphic file (type pdf)
+ <use ESJFVerlet_x10.pdf>
+Package pdftex.def Info: ESJFVerlet_x10.pdf used on input line 289.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJFVerlet_x1000.pdf, id=545, 569.12625pt x 546.04pt>
+File: ESJFVerlet_x1000.pdf Graphic file (type pdf)
+
+<use ESJFVerlet_x1000.pdf>
+Package pdftex.def Info: ESJFVerlet_x1000.pdf used on input line 296.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+ [13
+
+] [14 <./ESJFRK4_reg.pdf, page is rotated 90 degrees> <./ESJFRK4_x10.pdf, page 
+is rotated 90 degrees>] [15 <./ESJFRK4_x1000.pdf, page is rotated 90 degrees> <
+./ESJFVerlet_reg.pdf, page is rotated 90 degrees>] [16 <./ESJFVerlet_x10.pdf, p
+age is rotated 90 degrees> <./ESJFVerlet_x1000.pdf, page is rotated 90 degrees>
+]
+Appendix C.
+[17
+
+] [18] [19] (./ReportProject3.bbl [20]
 Underfull \hbox (badness 3209) in paragraph at lines 11--14
 []\OT1/cmr/m/n/12 Phil Duxbury and Morten Hjorth-Jensen.  Msu com-pu-ta-tional 
 physics
  []
 
-) [3
+) [21
 
 ] (./ReportProject3.aux) ) 
 Here is how much of TeX's memory you used:
- 3136 strings out of 493304
- 42647 string characters out of 6139871
- 108994 words of memory out of 5000000
- 6526 multiletter control sequences out of 15000+600000
- 9505 words of font info for 37 fonts, out of 8000000 for 9000
+ 3646 strings out of 493304
+ 50828 string characters out of 6139871
+ 120681 words of memory out of 5000000
+ 7006 multiletter control sequences out of 15000+600000
+ 14814 words of font info for 59 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,6n,31p,247b,193s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,31p,849b,308s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-
-Output written on ReportProject3.pdf (5 pages, 60273 bytes).
+cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on ReportProject3.pdf (23 pages, 2067844 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
- 24 compressed objects within 1 object stream
+ 865 PDF objects out of 1000 (max. 8388607)
+ 385 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
