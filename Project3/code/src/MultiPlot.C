@@ -24,11 +24,13 @@ MultiPlot::MultiPlot(){
 //--------------------------------------------------------------------------------------
 
 MultiPlot::~MultiPlot(){
+  
   if(_isplots){
     for( unsigned int i = 0; i < _plots.size(); i++ ){
       delete _plots.at(i);
     }
-  }  
+  } 
+   
   if(_ismade){
     delete _TheCanvas; 
     delete _TheLegend; 

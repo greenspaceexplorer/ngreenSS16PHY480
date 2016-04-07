@@ -24,8 +24,7 @@
 
 \doublespacing
 \section{Introduction}\label{sec:intro}
-Modeling the gravitational force has many applications, from space travel to astronomy. I will discuss how to use the Runge-Kutta and Verlet algorithms to numerically calculate the motion of model solar systems due to classical gravitational interactions. In section \ref{sec:diffeq}, I cover the equations used to model gravitational interactions. In section \ref{sec:alg}, I discuss how these equations can be solved numerically. In section \ref{sec:ss}, I show these algorithms applied in different situations. Finally, in section \ref{sec:conclude}, I summarize the conclusions of this study.
-
+Modeling the gravitational force has many applications, from space travel to astronomy. I will discuss how to use the Runge-Kutta and Verlet algorithms to 
 \section{Differential Equations}\label{sec:diffeq}
 
 

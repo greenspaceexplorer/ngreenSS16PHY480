@@ -27,7 +27,7 @@ Planet SolarSystem::GetPlanet( unsigned int i ){
 
   if( i > _vPlanets.size() - 1 ){
     cout << "Error: cannot get planet " << i 
-	 << ". Current number of planets = " << _vPlanets.size() << endl;
+         << ". Current number of planets = " << _vPlanets.size() << endl;
     exit(1);
   }
   return _vPlanets.at(i);
@@ -253,12 +253,16 @@ void SolarSystem::Verlet(){
   _solved = true;
   // make force variables in this scope so they persist through loops
   vector<double> Fx,Fy,Fz;
+  vector<double> fx,fy,fz;
   double f_x,f_y,f_z;
   for( unsigned int fi = 0; fi < GetN(); fi++ ){
     TotalForce(fi,0,f_x,f_y,f_z);
     Fx.push_back(f_x);
     Fy.push_back(f_y);
     Fz.push_back(f_z);
+    fx.push_back(f_x);
+    fy.push_back(f_y);
+    fz.push_back(f_z);
   }
 
   for( int i = 1; i <= _Ntime; i++){
@@ -275,19 +279,19 @@ void SolarSystem::Verlet(){
       else{
 	// advance spatial coordinates by one time step
 	// set velocity to zero for now
-	f_x = Fx.at(iPlanet);
-	f_y = Fy.at(iPlanet);
-	f_z = Fz.at(iPlanet);
+	fx.at(iPlanet) = Fx.at(iPlanet);
+	fy.at(iPlanet) = Fy.at(iPlanet);
+	fz.at(iPlanet) = Fz.at(iPlanet);
 	_vPlanets.at(iPlanet).AddCoordinates(i*_step,
 					     _vPlanets.at(iPlanet).X(i-1)+ 
 					     _step*_vPlanets.at(iPlanet).Vx(i-1)+
-					     _step*_step*f_x/(2.*_vPlanets.at(iPlanet).M()),
+					     _step*_step*fx.at(iPlanet)/(2.*_vPlanets.at(iPlanet).M()),
 					     _vPlanets.at(iPlanet).Y(i-1)+
 					     _step*_vPlanets.at(iPlanet).Vy(i-1)+
-					     _step*_step*f_y/(2.*_vPlanets.at(iPlanet).M()),
+					     _step*_step*fy.at(iPlanet)/(2.*_vPlanets.at(iPlanet).M()),
 					     _vPlanets.at(iPlanet).Z(i-1)+
 					     _step*_vPlanets.at(iPlanet).Vz(i-1)+
-					     _step*_step*f_z/(2.*_vPlanets.at(iPlanet).M()),
+					     _step*_step*fz.at(iPlanet)/(2.*_vPlanets.at(iPlanet).M()),
 					     0.,0.,0.);
       }
     }
@@ -297,11 +301,11 @@ void SolarSystem::Verlet(){
 	TotalForce(iPlanet,i,Fx.at(iPlanet),Fy.at(iPlanet),Fz.at(iPlanet));
 	// advance velocity coordinates by one step
 	_vPlanets.at(iPlanet).SetVx(_vPlanets.at(iPlanet).Vx(i-1)+
-				    _step*(f_x+Fx.at(iPlanet))/(2.*_vPlanets.at(iPlanet).M()),i);
+				    _step*(fx.at(iPlanet)+Fx.at(iPlanet))/(2.*_vPlanets.at(iPlanet).M()),i);
 	_vPlanets.at(iPlanet).SetVy(_vPlanets.at(iPlanet).Vy(i-1)+
-				    _step*(f_y+Fy.at(iPlanet))/(2.*_vPlanets.at(iPlanet).M()),i);
+				    _step*(fy.at(iPlanet)+Fy.at(iPlanet))/(2.*_vPlanets.at(iPlanet).M()),i);
 	_vPlanets.at(iPlanet).SetVz(_vPlanets.at(iPlanet).Vz(i-1)+
-				    _step*(f_z+Fz.at(iPlanet))/(2.*_vPlanets.at(iPlanet).M()),i);
+				    _step*(fz.at(iPlanet)+Fz.at(iPlanet))/(2.*_vPlanets.at(iPlanet).M()),i);
 	
       }
     }

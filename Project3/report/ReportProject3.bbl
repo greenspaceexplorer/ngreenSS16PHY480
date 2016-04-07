@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{Brun:1997}
+Rene Brun and Fons Rademakers.
+\newblock Root - an object oriented data analysis framework.
+\newblock {\em Nuclear Instruments and Methods in Physics Research Section A},
+  1997.
+\newblock See also http://root.cern.ch.
+
+\bibitem{Dux:2016}
+Phil Duxbury and Morten Hjorth-Jensen.
+\newblock Msu computational physics (phy480/905) course material.
+\newblock 2016.
+
+\bibitem{Landau:2008}
+Rubin Landau, Manuel P\'{a}ez, and Cristian Bordeianu.
+\newblock {\em A Survey of Computational Physics}.
+\newblock Princeton University Press, Princeton, NJ, 2008.
+
+\end{thebibliography}
