@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.14)  7 APR 2016 17:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.14)  7 APR 2016 20:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -543,157 +543,240 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 21.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] [2] [3] [4]
-<ESRK4_position.pdf, id=28, 569.12625pt x 546.04pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1] [2] [3] [4] [5] [6
+] [7]
+<ESRK4_position.pdf, id=40, 569.12625pt x 546.04pt>
 File: ESRK4_position.pdf Graphic file (type pdf)
  <use ESRK4_position.pdf>
-Package pdftex.def Info: ESRK4_position.pdf used on input line 164.
+Package pdftex.def Info: ESRK4_position.pdf used on input line 213.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-Underfull \hbox (badness 1742) in paragraph at lines 167--167
+Underfull \hbox (badness 1742) in paragraph at lines 216--216
 [][]\OT1/cmr/m/n/12 : |Plot of Earth's po-si-tion in
  []
 
-<ESVerlet_position.pdf, id=29, 569.12625pt x 546.04pt>
+<ESVerlet_position.pdf, id=41, 569.12625pt x 546.04pt>
 File: ESVerlet_position.pdf Graphic file (type pdf)
 
 <use ESVerlet_position.pdf>
-Package pdftex.def Info: ESVerlet_position.pdf used on input line 171.
+Package pdftex.def Info: ESVerlet_position.pdf used on input line 220.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-Underfull \hbox (badness 1742) in paragraph at lines 174--174
+Underfull \hbox (badness 1742) in paragraph at lines 223--223
 [][]\OT1/cmr/m/n/12 : |Plot of Earth's po-si-tion in
  []
 
-<Escape_plot.pdf, id=30, 569.12625pt x 546.04pt>
+[8 <./ESRK4_position.pdf, page is rotated 90 degrees>]
+<Escape_plot.pdf, id=88, 569.12625pt x 546.04pt>
 File: Escape_plot.pdf Graphic file (type pdf)
  <use Escape_plot.pdf>
-Package pdftex.def Info: Escape_plot.pdf used on input line 181.
+Package pdftex.def Info: Escape_plot.pdf used on input line 231.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESJFRK4_Earths.pdf, id=31, 569.12625pt x 546.04pt>
+<ESJFRK4_Earths.pdf, id=89, 569.12625pt x 546.04pt>
 File: ESJFRK4_Earths.pdf Graphic file (type pdf)
  <use ESJFRK4_Earths.pdf>
-Package pdftex.def Info: ESJFRK4_Earths.pdf used on input line 190.
+Package pdftex.def Info: ESJFRK4_Earths.pdf used on input line 240.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESJFVerlet_Earths.pdf, id=32, 569.12625pt x 546.04pt>
+<ESJFVerlet_Earths.pdf, id=90, 569.12625pt x 546.04pt>
 File: ESJFVerlet_Earths.pdf Graphic file (type pdf)
 
 <use ESJFVerlet_Earths.pdf>
-Package pdftex.def Info: ESJFVerlet_Earths.pdf used on input line 197.
+Package pdftex.def Info: ESJFVerlet_Earths.pdf used on input line 247.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
- [5] [6 <./ESRK4_position.pdf, page is rotated 90 degrees> <./ESVerlet_position
-.pdf, page is rotated 90 degrees>] [7 <./Escape_plot.pdf, page is rotated 90 de
-grees> <./ESJFRK4_Earths.pdf, page is rotated 90 degrees>] [8 <./ESJFVerlet_Ear
-ths.pdf, page is rotated 90 degrees>]
+
+<ESJD_vs_ESJF_RK4.pdf, id=91, 569.12625pt x 546.04pt>
+File: ESJD_vs_ESJF_RK4.pdf Graphic file (type pdf)
+
+<use ESJD_vs_ESJF_RK4.pdf>
+Package pdftex.def Info: ESJD_vs_ESJF_RK4.pdf used on input line 257.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<ESJD_vs_ESJF_Verlet.pdf, id=92, 569.12625pt x 546.04pt>
+File: ESJD_vs_ESJF_Verlet.pdf Graphic file (type pdf)
+
+<use ESJD_vs_ESJF_Verlet.pdf>
+Package pdftex.def Info: ESJD_vs_ESJF_Verlet.pdf used on input line 265.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<all_bodies_inner_outer_sep_RK4.pdf, id=93, 569.12625pt x 546.04pt>
+File: all_bodies_inner_outer_sep_RK4.pdf Graphic file (type pdf)
+
+<use all_bodies_inner_outer_sep_RK4.pdf>
+Package pdftex.def Info: all_bodies_inner_outer_sep_RK4.pdf used on input line 
+274.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<all_bodies_same_time_RK4.pdf, id=94, 569.12625pt x 546.04pt>
+File: all_bodies_same_time_RK4.pdf Graphic file (type pdf)
+
+<use all_bodies_same_time_RK4.pdf>
+Package pdftex.def Info: all_bodies_same_time_RK4.pdf used on input line 281.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+ [9 <./ESVerlet_position.pdf, page is rotated 90 degrees>] [10 <./Escape_plot.p
+df, page is rotated 90 degrees> <./ESJFRK4_Earths.pdf, page is rotated 90 degre
+es>] [11 <./ESJFVerlet_Earths.pdf, page is rotated 90 degrees> <./ESJD_vs_ESJF_
+RK4.pdf, page is rotated 90 degrees>]
+[12 <./ESJD_vs_ESJF_Verlet.pdf, page is rotated 90 degrees> <./all_bodies_inner
+_outer_sep_RK4.pdf, page is rotated 90 degrees>] [13 <./all_bodies_same_time_RK
+4.pdf, page is rotated 90 degrees>]
 Appendix A.
-<ESRK4_ke.pdf, id=262, 569.12625pt x 546.04pt>
+<ESRK4_ke.pdf, id=456, 569.12625pt x 546.04pt>
 File: ESRK4_ke.pdf Graphic file (type pdf)
  <use ESRK4_ke.pdf>
-Package pdftex.def Info: ESRK4_ke.pdf used on input line 214.
+Package pdftex.def Info: ESRK4_ke.pdf used on input line 297.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESVerlet_ke.pdf, id=263, 569.12625pt x 546.04pt>
+<ESVerlet_ke.pdf, id=457, 569.12625pt x 546.04pt>
 File: ESVerlet_ke.pdf Graphic file (type pdf)
  <use ESVerlet_ke.pdf>
-Package pdftex.def Info: ESVerlet_ke.pdf used on input line 221.
+Package pdftex.def Info: ESVerlet_ke.pdf used on input line 304.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESRK4_pe.pdf, id=264, 569.12625pt x 546.04pt>
+<ESRK4_pe.pdf, id=458, 569.12625pt x 546.04pt>
 File: ESRK4_pe.pdf Graphic file (type pdf)
  <use ESRK4_pe.pdf>
-Package pdftex.def Info: ESRK4_pe.pdf used on input line 229.
+Package pdftex.def Info: ESRK4_pe.pdf used on input line 312.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESVerlet_pe.pdf, id=265, 569.12625pt x 546.04pt>
+<ESVerlet_pe.pdf, id=459, 569.12625pt x 546.04pt>
 File: ESVerlet_pe.pdf Graphic file (type pdf)
  <use ESVerlet_pe.pdf>
-Package pdftex.def Info: ESVerlet_pe.pdf used on input line 236.
+Package pdftex.def Info: ESVerlet_pe.pdf used on input line 319.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESRK4_l.pdf, id=266, 569.12625pt x 546.04pt>
+<ESRK4_l.pdf, id=460, 569.12625pt x 546.04pt>
 File: ESRK4_l.pdf Graphic file (type pdf)
  <use ESRK4_l.pdf>
-Package pdftex.def Info: ESRK4_l.pdf used on input line 243.
+Package pdftex.def Info: ESRK4_l.pdf used on input line 326.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESVerlet_l.pdf, id=267, 569.12625pt x 546.04pt>
+<ESVerlet_l.pdf, id=461, 569.12625pt x 546.04pt>
 File: ESVerlet_l.pdf Graphic file (type pdf)
  <use ESVerlet_l.pdf>
-Package pdftex.def Info: ESVerlet_l.pdf used on input line 252.
+Package pdftex.def Info: ESVerlet_l.pdf used on input line 335.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
- [9
+ [14
 
 ]
-[10 <./ESRK4_ke.pdf, page is rotated 90 degrees> <./ESVerlet_ke.pdf, page is ro
-tated 90 degrees>] [11 <./ESRK4_pe.pdf, page is rotated 90 degrees> <./ESVerlet
-_pe.pdf, page is rotated 90 degrees>] [12 <./ESRK4_l.pdf, page is rotated 90 de
+[15 <./ESRK4_ke.pdf, page is rotated 90 degrees> <./ESVerlet_ke.pdf, page is ro
+tated 90 degrees>] [16 <./ESRK4_pe.pdf, page is rotated 90 degrees> <./ESVerlet
+_pe.pdf, page is rotated 90 degrees>] [17 <./ESRK4_l.pdf, page is rotated 90 de
 grees> <./ESVerlet_l.pdf, page is rotated 90 degrees>]
 Appendix B.
-<ESJFRK4_reg.pdf, id=540, 569.12625pt x 546.04pt>
+<ESJFRK4_reg.pdf, id=735, 569.12625pt x 546.04pt>
 File: ESJFRK4_reg.pdf Graphic file (type pdf)
  <use ESJFRK4_reg.pdf>
-Package pdftex.def Info: ESJFRK4_reg.pdf used on input line 261.
+Package pdftex.def Info: ESJFRK4_reg.pdf used on input line 344.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESJFRK4_x10.pdf, id=541, 569.12625pt x 546.04pt>
+<ESJFRK4_x10.pdf, id=736, 569.12625pt x 546.04pt>
 File: ESJFRK4_x10.pdf Graphic file (type pdf)
  <use ESJFRK4_x10.pdf>
-Package pdftex.def Info: ESJFRK4_x10.pdf used on input line 268.
+Package pdftex.def Info: ESJFRK4_x10.pdf used on input line 351.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESJFRK4_x1000.pdf, id=542, 569.12625pt x 546.04pt>
+<ESJFRK4_x1000.pdf, id=737, 569.12625pt x 546.04pt>
 File: ESJFRK4_x1000.pdf Graphic file (type pdf)
  <use ESJFRK4_x1000.pdf>
-Package pdftex.def Info: ESJFRK4_x1000.pdf used on input line 275.
+Package pdftex.def Info: ESJFRK4_x1000.pdf used on input line 358.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESJFVerlet_reg.pdf, id=543, 569.12625pt x 546.04pt>
+<ESJFVerlet_reg.pdf, id=738, 569.12625pt x 546.04pt>
 File: ESJFVerlet_reg.pdf Graphic file (type pdf)
  <use ESJFVerlet_reg.pdf>
-Package pdftex.def Info: ESJFVerlet_reg.pdf used on input line 282.
+Package pdftex.def Info: ESJFVerlet_reg.pdf used on input line 365.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESJFVerlet_x10.pdf, id=544, 569.12625pt x 546.04pt>
+<ESJFVerlet_x10.pdf, id=739, 569.12625pt x 546.04pt>
 File: ESJFVerlet_x10.pdf Graphic file (type pdf)
  <use ESJFVerlet_x10.pdf>
-Package pdftex.def Info: ESJFVerlet_x10.pdf used on input line 289.
+Package pdftex.def Info: ESJFVerlet_x10.pdf used on input line 372.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
 
-<ESJFVerlet_x1000.pdf, id=545, 569.12625pt x 546.04pt>
+<ESJFVerlet_x1000.pdf, id=740, 569.12625pt x 546.04pt>
 File: ESJFVerlet_x1000.pdf Graphic file (type pdf)
 
 <use ESJFVerlet_x1000.pdf>
-Package pdftex.def Info: ESJFVerlet_x1000.pdf used on input line 296.
+Package pdftex.def Info: ESJFVerlet_x1000.pdf used on input line 379.
 (pdftex.def)             Requested size: 216.81pt x 208.01393pt.
- [13
+ [18
 
-] [14 <./ESJFRK4_reg.pdf, page is rotated 90 degrees> <./ESJFRK4_x10.pdf, page 
-is rotated 90 degrees>] [15 <./ESJFRK4_x1000.pdf, page is rotated 90 degrees> <
-./ESJFVerlet_reg.pdf, page is rotated 90 degrees>] [16 <./ESJFVerlet_x10.pdf, p
+] [19 <./ESJFRK4_reg.pdf, page is rotated 90 degrees> <./ESJFRK4_x10.pdf, page 
+is rotated 90 degrees>] [20 <./ESJFRK4_x1000.pdf, page is rotated 90 degrees> <
+./ESJFVerlet_reg.pdf, page is rotated 90 degrees>] [21 <./ESJFVerlet_x10.pdf, p
 age is rotated 90 degrees> <./ESJFVerlet_x1000.pdf, page is rotated 90 degrees>
 ]
 Appendix C.
-[17
+<all_bodies_inner_outer_sep_Verlet.pdf, id=1012, 569.12625pt x 546.04pt>
+File: all_bodies_inner_outer_sep_Verlet.pdf Graphic file (type pdf)
 
-] [18] [19] (./ReportProject3.bbl [20]
+<use all_bodies_inner_outer_sep_Verlet.pdf>
+Package pdftex.def Info: all_bodies_inner_outer_sep_Verlet.pdf used on input li
+ne 387.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<all_bodies_same_time_Verlet.pdf, id=1013, 569.12625pt x 546.04pt>
+File: all_bodies_same_time_Verlet.pdf Graphic file (type pdf)
+
+<use all_bodies_same_time_Verlet.pdf>
+Package pdftex.def Info: all_bodies_same_time_Verlet.pdf used on input line 394
+.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<inner_only_RK4.pdf, id=1014, 569.12625pt x 546.04pt>
+File: inner_only_RK4.pdf Graphic file (type pdf)
+ <use inner_only_RK4.pdf>
+Package pdftex.def Info: inner_only_RK4.pdf used on input line 401.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<inner_only_Verlet.pdf, id=1015, 569.12625pt x 546.04pt>
+File: inner_only_Verlet.pdf Graphic file (type pdf)
+
+<use inner_only_Verlet.pdf>
+Package pdftex.def Info: inner_only_Verlet.pdf used on input line 408.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<outer_only_RK4.pdf, id=1016, 569.12625pt x 546.04pt>
+File: outer_only_RK4.pdf Graphic file (type pdf)
+ <use outer_only_RK4.pdf>
+Package pdftex.def Info: outer_only_RK4.pdf used on input line 415.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+
+<outer_only_Verlet.pdf, id=1017, 569.12625pt x 546.04pt>
+File: outer_only_Verlet.pdf Graphic file (type pdf)
+
+<use outer_only_Verlet.pdf>
+Package pdftex.def Info: outer_only_Verlet.pdf used on input line 422.
+(pdftex.def)             Requested size: 216.81pt x 208.01393pt.
+ [22
+
+] [23 <./all_bodies_inner_outer_sep_Verlet.pdf, page is rotated 90 degrees> <./
+all_bodies_same_time_Verlet.pdf, page is rotated 90 degrees>] [24 <./inner_only
+_RK4.pdf, page is rotated 90 degrees> <./inner_only_Verlet.pdf, page is rotated
+ 90 degrees>] [25 <./outer_only_RK4.pdf, page is rotated 90 degrees> <./outer_o
+nly_Verlet.pdf, page is rotated 90 degrees>]
+Appendix D.
+[26
+
+] [27] [28] (./ReportProject3.bbl [29]
 Underfull \hbox (badness 3209) in paragraph at lines 11--14
 []\OT1/cmr/m/n/12 Phil Duxbury and Morten Hjorth-Jensen.  Msu com-pu-ta-tional 
 physics
  []
 
-) [21
+) [30
 
 ] (./ReportProject3.aux) ) 
 Here is how much of TeX's memory you used:
- 3646 strings out of 493304
- 50828 string characters out of 6139871
- 120681 words of memory out of 5000000
- 7006 multiletter control sequences out of 15000+600000
+ 3718 strings out of 493304
+ 52625 string characters out of 6139871
+ 122904 words of memory out of 5000000
+ 7068 multiletter control sequences out of 15000+600000
  14814 words of font info for 59 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,6n,31p,849b,308s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,6n,31p,849b,310s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
@@ -701,12 +784,13 @@ i8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on ReportProject3.pdf (23 pages, 2067844 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on ReportProject3.pdf (32 pages, 8430580 bytes).
 PDF statistics:
- 865 PDF objects out of 1000 (max. 8388607)
- 385 compressed objects within 4 object streams
+ 1340 PDF objects out of 1440 (max. 8388607)
+ 588 compressed objects within 6 object streams
  0 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 136 words of extra memory for PDF output out of 10000 (max. 10000000)
 

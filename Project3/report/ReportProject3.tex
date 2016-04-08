@@ -29,19 +29,52 @@ Modeling the gravitational force has many applications, from space travel to ast
 
 \section{Differential Equations}\label{sec:diffeq}
 The force due to gravity between two objects can be calculated using Newton's law of gravitation:
+
 \begin{equation}\label{eq:gravitation}
  F_G = \frac{GMm}{r^2}
 \end{equation}
-where $G$ is the universal gravitational constant, $M$ and $m$ are the masses of the two object, and $r$ is the distance between them. Newton's second law, $F = ma$ gives us that 
+
+where $G$ is the universal gravitational constant, $M$ and $m$ are the masses of the two object, and $r$ is the distance between them. Newton's second law, $F = ma$ gives us that
+
 \begin{equation}\label{eq:nsl}
  \frac{d^2x}{dt^2} = \frac{F_{G,m,x}}{m}
 \end{equation}
-with similar equations for $y$ and $z$. In order to use the algorithms, these equations must be rewritten as a set of coupled first order ordinary differential equations
 
+with similar equations for $y$ and $z$. In order to use the algorithms, these equations must be rewritten as a set of coupled first order ordinary differential equations. For a planet orbiting the sun, these equations are
+
+\begin{equation}\label{eq:dvx}
+   \frac{dv_x}{dt}=-\frac{GM_{\odot}}{r^3}x,
+\end{equation}
+
+\begin{equation}\label{eq:dx}
+   \frac{dx}{dt}=v_x,
+\end{equation}
+
+for the $x$ coordinate, with similar equations for $y$ and $z$ coordinates.
 
 \section{Algorithms}\label{sec:alg}
 
+  Both the Verlet and Runge-Kutta methods are based on Taylor expanding the ODE for which we want to solve ( e.g. equations (\ref{eq:dvx}) and (\ref{eq:dx}) ), discretizing the function in question, then using some trick to step through the discrete solutions based on initial conditions. Their derivation can be found in references \cite{Landau:2008} and \cite{Dux:2016}. I will cover how they can be used algorithmically.
+
 \subsection{RK4}
+In addition to a Taylor expansion, the Runge-Kutta method also utilizes midpoint approximations of the integral of a differential equation. Hence, different orders of this approximation, using any number of midpoints, can be used to get varying degrees of accuracy. The RK4 method uses two midpoints and the endpoints of each discrete interval. For a first order differential equation $\frac{dy}{dx} = f(t,y)$, we have
+\[
+  k_1=hf(t_i,y_i) \hspace{0.5cm}   k_2=hf(t_i+h/2,y_i+k_1/2)
+\]
+\[
+  k_3=hf(t_i+h/2,y_i+k_2/2)\hspace{0.5cm}   k_4=hf(t_i+h,y_i+k_3)
+  \]
+to get the next value in the discretized solution
+\begin{equation}
+  y_{i+1}=y_i +\frac{1}{6}\left( k_1 +2k_2+2k_3+k_4\right).
+\end{equation}
+
+Applying this to equations (\ref{eq:dvx}) and (\ref{eq:dx}), first note that the right side of equation 
+(\ref{eq:dvx}) can be represented for a planet with mass $m$ as $F_x(r)/m$. First calculate $k_1$
+\begin{equation}
+ x: k_1 = hv_{i-1} \hspace{0.5cm} v: k_1 = hF_x(r_{i})/m.
+\end{equation}
+where $h$ is the discrete time step. For the positional $k_2$, $k_3$, and $k_4$, simply add $k_1/2$, $k_2/2$, or $k_3$ respectively to the $i^{th}$ position. The velocity $k_2$, $k_3$, and $k_4$ then come automatically by recalculating the force at the new position and multiplying it by $h/m$. The complete code that I used can be found in appendix \ref{app:rk4}, but the abridged version follows:
 
 \singlespacing
 \begin{Verbatim}[fontsize=\small]
@@ -85,10 +118,22 @@ with similar equations for $y$ and $z$. In order to use the algorithms, these eq
     }
   }
 \end{Verbatim}
+
+This algorithm is the more accurate of the two covered in this paper, with a global error of $O(h^4)$.
 \doublespacing
 
 
 \subsection{Verlet}
+
+The velocity Verlet method is more straightforward, but goes like $O(h^3)$. The equations to find the next discrete solution value are as follows.
+\begin{equation}
+x_{i+1} = x_i+hv_i+\frac{h^2}{2}a_{i},
+\end{equation}
+and
+\begin{equation}
+v_{i+1} = v_i+\frac{h}{2}\left( a_{i+1}+a_{i}\right). 
+\end{equation}
+where $a$ denotes the acceleration. The trickiest part of this algorithm is that the position needs to be calculated first. This lets us get $a_{i+1}$ by calculating the force from the new position and dividing by the planet's mass. I implemented this algorithm in C++ as follows:
 
 \begin{Verbatim}[fontsize=\small]
 void SolarSystem::Verlet(){
@@ -155,9 +200,13 @@ void SolarSystem::Verlet(){
 }
 \end{Verbatim}
 
+Note that the equations are for the $x$ components of the position and velocity only. As can be seen in the code, the other coordinates can be found using analogous equations.
+
 \section{The Solar System}\label{sec:ss}
+Armed with these algorithms, I was able to model several different systems. The simplest case is the Earth-Sun system, ignoring the other planets, assuming the sun is stationary and the orbit of Earth is circular. In the next case, I determined the velocity needed for a planet starting at 1 AU from the sun to escape from the solar system. By adding the forces on each planet due to all other bodies component-wise, I am then able to move onto three and more bodied systems culminating with all major bodies of the solar system. Note that for all calculations, I used the units of solar masses ($M_\odot$) for mass, AU (mean distance from Earth to the Sun) for distance, and years for time. For easier comparison, I have placed many of the resulting plots in the appendix.
 
 \subsection{Earth-Sun only}
+Figures \ref{fig:ESRK4_position} and \ref{fig:ESVerlet_position} were calculated so that Earth has a circular orbit. In appendix \ref{app:esplots}, additional plots of the angular momentum and kinetic and potential energy of the system are included. 
 
  \begin{SCfigure}
  \centering
@@ -173,6 +222,7 @@ void SolarSystem::Verlet(){
   \label{fig:ESVerlet_position}
  \end{SCfigure}
 
+ Note that the orbits in the Verlet plot of figure \ref{fig:ESVerlet_position} begin to noticeably diverge at 50 intervals, while the RK4 algorithm doesn't seem to diverge until somewhere between 10 and 25 intervals. Additionally, the kinetic energy, potential energy, and the angular momentum all converge to being constant at higher numbers of intervals. This is expected because a circular orbit has constant velocity and is at a constant distance from the sun.
 
 \subsection{Escape Velocity}
 
@@ -200,10 +250,43 @@ void SolarSystem::Verlet(){
  \end{SCfigure}
 
 
-\subsection{Onwards: 3 Dynamic Bodies and All Major Bodies}
+\subsection{Three Body System: Dynamic Sun}
 
+ \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{ESJD_vs_ESJF_RK4.pdf}
+  \caption{Plot comparing 3 body systems ( Earth, Jupiter, and the Sun ) with a stationary sun vs a system revolving around a common center of mass. Note the mass of the sun in the dynamic case was increased by 10\% to increase the visual effect. Time: 13 years, Time Steps:13000, Algorithm: RK4}
+  \label{fig:ESJD_vs_ESJF_RK4}
+ \end{SCfigure}
+
+ 
+  \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{ESJD_vs_ESJF_Verlet.pdf}
+  \caption{Plot comparing 3 body systems ( Earth, Jupiter, and the Sun ) with a stationary sun vs a system revolving around a common center of mass. Note the mass of the sun in the dynamic case was increased by 10\% to increase the visual effect. Time: 13 years, Time Steps:13000, Algorithm: Verlet}
+  \label{fig:ESJD_vs_ESJF_Verlet}
+ \end{SCfigure}
+
+\subsection{All Major Solar System Bodies}
+
+  \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{all_bodies_inner_outer_sep_RK4.pdf}
+  \caption{Plot of all major bodies with inner and outer planets calculated separately. Inner Planets - Time: 5 years, Time Steps: 5000, Algorithm: RK4. Outer Planets - Time: 250 years, Time Steps: 25000, Algorithm: RK4}
+  \label{fig:all_bodies_inner_outer_sep_RK4}
+ \end{SCfigure}
+
+ \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{all_bodies_same_time_RK4.pdf}
+  \caption{Plot of all major bodies calculated at the same time. Note that Mercury leaves the solar system. Time: 250 years, Time Steps: 25000, Algorithm: RK4}
+  \label{fig:all_bodies_same_time_RK4}
+ \end{SCfigure}
+ 
 \section{Conclusion}\label{sec:conclude}
+Both algorithms give good approximations of orbits in single and many body cases given sufficient time steps. The RK4 method is more exact that the Verlet method at the expense of being more difficult to utilize and some extra floating point operations ( both algorithms only depend on the previous step, so they only increase in floating point operations linearly ). The many body case is limited by systems that move at many different timescales, since a relatively short time step for a body with a long period is a long time step for a body with a short period. The algorithms also fail to take into account effects due to general relativity. Both of these shortcomings can be seen in figure \ref{fig:all_bodies_same_time_RK4} with Mercury. 
 
+The different time scales can be remedied by calculating the orbits of bodies on different time scales separately. This is the method used in figure \ref{fig:all_bodies_inner_outer_sep_RK4}. Additionally, discrepancies due to general relativity could be remedied by including a relativistic correction to the calculation of the force on relevant bodies.
 
 \appendix
 \addtocontents{toc}{\protect\contentsline{chapter}{Appendix:}{}}
@@ -297,6 +380,49 @@ void SolarSystem::Verlet(){
   \caption{Plot of 3 body system with Earth, Jupiter, and a stationary sun using $\times 1000$ Jupiter mass. Used a shorter timespan because this heavy Jupiter causes Earth to ``hit the sun'', then go barreling out many AU so the orbital structure is no longer visible. Time interval: 4.8 years, Time steps: 13000, Algorithm: Verlet.}
   \label{fig:ESJFVerlet_x1000}
  \end{figure}
+ 
+ \chapter{All Major Solar System Bodies: Plots}
+   \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{all_bodies_inner_outer_sep_Verlet.pdf}
+  \caption{Plot of all major bodies with inner and outer planets calculated separately. Inner Planets - Time: 5 years, Time Steps: 5000, Algorithm: Verlet. Outer Planets - Time: 250 years, Time Steps: 25000, Algorithm: Verlet}
+  \label{fig:all_bodies_inner_outer_sep_Verlet}
+ \end{SCfigure}
+
+ \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{all_bodies_same_time_Verlet.pdf}
+  \caption{Plot of all major bodies calculated at the same time. Time: 250 years, Time Steps: 25000, Algorithm: Verlet}
+  \label{fig:all_bodies_same_time_Verlet}
+ \end{SCfigure}
+ 
+  \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{inner_only_RK4.pdf}
+  \caption{Inner solar system. Time: 5 years, Time Steps: 5000, Algorithm: RK4}
+  \label{fig:inner_only_RK4}
+ \end{SCfigure}
+ 
+   \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{inner_only_Verlet.pdf}
+  \caption{Inner solar system. Time: 5 years, Time Steps: 5000, Algorithm: Verlet}
+  \label{fig:inner_only_Verlet}
+ \end{SCfigure}
+ 
+  \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{outer_only_RK4.pdf}
+  \caption{Outer solar system. Time: 250 years, Time Steps: 25000, Algorithm: RK4}
+  \label{fig:outer_only_RK4}
+ \end{SCfigure}
+ 
+   \begin{SCfigure}
+ \centering
+   \includegraphics[width=0.5\textwidth]{outer_only_Verlet.pdf}
+  \caption{Outer solar system. Time: 250 years, Time Steps: 25000, Algorithm: Verlet}
+  \label{fig:outer_only_Verlet}
+ \end{SCfigure}
  
  \chapter{All RK4 Code}\label{app:rk4}
  \singlespacing
