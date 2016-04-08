@@ -205,7 +205,7 @@ Note that the equations are for the $x$ components of the position and velocity 
 \section{The Solar System}\label{sec:ss}
 Armed with these algorithms, I was able to model several different systems. The simplest case is the Earth-Sun system, ignoring the other planets, assuming the sun is stationary and the orbit of Earth is circular. In the next case, I determined the velocity needed for a planet starting at 1 AU from the sun to escape from the solar system. By adding the forces on each planet due to all other bodies component-wise, I am then able to move onto three and more bodied systems culminating with all major bodies of the solar system. Note that for all calculations, I used the units of solar masses ($M_\odot$) for mass, AU (mean distance from Earth to the Sun) for distance, and years for time. For easier comparison, I have placed many of the resulting plots in the appendix.
 
-\subsection{Earth-Sun only}
+\subsection{Earth-Sun only}\ref{ssec:esf}
 Figures \ref{fig:ESRK4_position} and \ref{fig:ESVerlet_position} were calculated so that Earth has a circular orbit. In appendix \ref{app:esplots}, additional plots of the angular momentum and kinetic and potential energy of the system are included. 
 
  \begin{SCfigure}
@@ -226,14 +226,26 @@ Figures \ref{fig:ESRK4_position} and \ref{fig:ESVerlet_position} were calculated
 
 \subsection{Escape Velocity}
 
+Say that a planet with Earth's mass starts at 1 AU from a stationary sun. What velocity does it need in order to escape from the solar system? I found this out by noting that it needs enough kinetic energy to overcome the gravitational potential well of the sun. Hence, the escape velocity can be found by solving
+\[
+ \frac{1}{2}mv_{escape}^2-\frac{GM_\odot m}{r_0} = E = 0
+\]
+for the velocity $v_{escape}$. This gives us that the escape velocity is
+\[
+ v_{escape}=\sqrt{\frac{2GM_\odot}{r_0}}.
+\]
+
  \begin{SCfigure}
  \centering
    \includegraphics[width=0.5\textwidth]{Escape_plot.pdf}
-  \caption{Plot of planet with starting position of 1 AU and starting mass of one Earth mass with initial velocity just above and below escape velocity. Orbital period found by trial and error to be 126 years for the planet just below escape velocity. 20000 time steps were used for accurate orbit modeling.}
+  \caption{Plot of planet with starting position of 1 AU and starting mass of one Earth mass with initial velocity just above and below escape velocity. Orbital period found by trial and error to be 126 years for the planet just below escape velocity. 20000 time steps and the RK4 algorithm were used for accurate orbit modeling.}
   \label{fig:Escape}
  \end{SCfigure}
 
-\subsection{Three Body System: Stationary Sun}
+ Setting up a simulation of such a planet with velocity 1\% above and below the escape velocity, we can see in figure \ref{fig:Escape} that this derivation for the escape velocity is correct.
+ 
+\subsection{Three Body System: Stationary Sun}\label{ssec:3bsss}
+Equation (\ref{eq:gravitation}) applies to any two massive bodies. To get the total force on a planet, one must sum all of the forces from other massive bodies on the planet component-wise. The position and velocity of the planet may then be calculated in accordance with section \ref{sec:alg}. The movement of planets in a many body system can be calculated by finding the total force on each planet at each time step, and advancing their position all at the same time.
 
 \begin{SCfigure}
  \centering
@@ -249,8 +261,10 @@ Figures \ref{fig:ESRK4_position} and \ref{fig:ESVerlet_position} were calculated
   \label{fig:ESJFVerlet_Earths}
  \end{SCfigure}
 
+In figures \ref{fig:ESJFRK4_Earths} and \ref{fig:ESJFVerlet_Earths}, this method was applied in a system similar to that in section \ref{ssec:esf}, except that the planet, Jupiter, was added. To see the effect of the additional force on Earth, I have included Earth's orbit in cases where Jupiter's mass is different orders of magnitude greater than it is in reality. As can be seen, when Jupiter has a mass on the same order as the Sun, it destabilizes Earth's orbit using both the RK4 and Verlet algorithms, causing it to spiral in towards the Sun. 
+\subsection{Three Body System: Dynamic Sun}\label{ssec:3bsds}
 
-\subsection{Three Body System: Dynamic Sun}
+Here, the same procedure was carried out as in section \ref{ssec:3bsss} with the regular Jupiter mass, with the exception of allowing the Sun to move. To keep the system stable, the Sun was taken to have a position such that the position of Earth and Jupiter were measured from the center-of-mass of the solar system ( instead of distance from the Sun ), and a velocity such that the momentum of the entire system was zero. 
 
  \begin{SCfigure}
  \centering
@@ -267,8 +281,11 @@ Figures \ref{fig:ESRK4_position} and \ref{fig:ESVerlet_position} were calculated
   \label{fig:ESJD_vs_ESJF_Verlet}
  \end{SCfigure}
 
+ The results for the RK4 and Verlet algorithms turned out basically identical, as seen in plots \ref{fig:ESJD_vs_ESJF_RK4} and \ref{fig:ESJD_vs_ESJF_Verlet}. For effect, I increased the mass of the Sun in the dynamic case by 10\% to show that the orbits in the dynamic sun case are no longer centered at the origin, as would be expected with a stationary sun.
+ 
 \subsection{All Major Solar System Bodies}
 
+With a method to handle the many body case, it was not difficult to extend the three-body case to the set of all major bodies in the solar system.
   \begin{SCfigure}
  \centering
    \includegraphics[width=0.5\textwidth]{all_bodies_inner_outer_sep_RK4.pdf}
@@ -282,9 +299,12 @@ Figures \ref{fig:ESRK4_position} and \ref{fig:ESVerlet_position} were calculated
   \caption{Plot of all major bodies calculated at the same time. Note that Mercury leaves the solar system. Time: 250 years, Time Steps: 25000, Algorithm: RK4}
   \label{fig:all_bodies_same_time_RK4}
  \end{SCfigure}
+ One difficulty arises when calculating the orbits of all major bodies with the fact that the distances and t
  
 \section{Conclusion}\label{sec:conclude}
+Both algorithms give good approximations of orbits in single and many body cases given sufficient time steps. The RK4 method is more exact that the Verlet method at the expense of being more difficult to utilize and some extra floating point operations ( both algorithms only depend on the previous step, so they only increase in floating point operations linearly ). The many body case is limited by systems that move at many different timescales, since a relatively short time step for a body with a long period is a long time step for a body with a short period. The algorithms also fail to take into account effects due to general relativity. Both of these shortcomings can be seen in figure \ref{fig:all_bodies_same_time_RK4} with Mercury. 
 
+The different time scales can be remedied by calculating the orbits of bodies on different time scales separately. This is the method used in figure \ref{fig:all_bodies_inner_outer_sep_RK4}. Additionally, discrepancies due to general relativity could be remedied by including a relativistic correction to the calculation of the force on relevant bodies.
 
 \appendix
 \addtocontents{toc}{\protect\contentsline{chapter}{Appendix:}{}}
