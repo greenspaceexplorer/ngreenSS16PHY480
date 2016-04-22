@@ -5,6 +5,7 @@
 #include <TChain.h>
 #include <TFile.h>
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <TString.h>
@@ -14,6 +15,7 @@
 #include <TObject.h>
 #include <EventReader.h>
 #include <TLorentzVector.h>
+#include <vector>
 
 using namespace std;
 
@@ -22,7 +24,7 @@ using namespace std;
 // ca:  Cambridge-Aachen
 // kt:  kt
 // dp:  distance in momentum space
-enum ClusterAlg{ akt, ca, kt, dp};
+enum ClusterAlg{ akt, ca, kt, dp };
 
 class ComplexBuilder{
  public:
@@ -46,13 +48,20 @@ class ComplexBuilder{
   // return distance b/w two particles for given clustering algorithm
   Double_t Distance( Long64_t, Long64_t, ClusterAlg );
 
-  // saves explicit metric space of particles in an event,
-  //   based on the given clustering algorithm, to a .csv file
-  void MetricSpace( Long64_t, ClusterAlg, string );
+  // builds explicit metric space based on given clustering algorithm
+  //   warning: clears previously stored metric space
+  void MetricSpace( Long64_t, ClusterAlg );
+
+  // filter out points with a nearest neighbor farther away than the given tolerance
+  void DensityFilter( Double_t );
+
+  // writes explicit metric space to .csv
+  void MetricSpaceCSV( string );
 
   EventReader *event;  
+
  private:
-  
+  vector< vector< Double_t > > _vMetricSpace;
   Long64_t nevents;
 
 };

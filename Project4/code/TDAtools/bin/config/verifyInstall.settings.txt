@@ -1,0 +1,78 @@
+###-------------------------------------------------
+### Input parameter settings file for 
+###
+###       Topological
+###        Data
+###         Analysis
+###
+### TDA is licensed from Duke University.
+### Copyright (c) 2012-14 by John Harer.
+### All rights reserved.
+###
+### Settings file consistent with version 0.0.10
+###-------------------------------------------------
+
+###-------------------------------------------------
+### Project information
+###-------------------------------------------------
+
+project =             
+user =                                          
+dataset =             	   
+notes =          
+
+
+###-------------------------------------------------
+### Mode(s) selection
+###-------------------------------------------------
+
+applicationMode =                         standAlone
+
+###-------------------------------------------------
+### Task and Algorithm selection
+###-------------------------------------------------
+
+taskChoice =                                     M12
+
+###-------------------------------------------------
+### Algorithm component specifications
+###-------------------------------------------------
+
+supplyDataAs =                            pointCloud
+switchToSparseAt =                              5000
+
+# for creating set of edges from point cloud (RCA1 alg.)
+distanceBoundOnEdges =		                 0.5
+pointCloudFile =                              D2.txt 
+
+
+
+convertDataToSparseMatrixFormat = # yes
+sparseMatrixOutputFile =  # sparseMatrix_@TS@.txt
+
+
+###-------------------------------------------------
+### Metric selection
+###-------------------------------------------------
+
+metricChoice =                                    L2
+p_valueForLpMetric =                               
+
+zp_value = 
+
+###-------------------------------------------------
+### File output
+###-------------------------------------------------
+
+0DintervalsFile =                    0Dintervals.txt
+1DintervalsFile =                    1Dintervals.txt
+reportFile =                              verify.txt
+
+
+###-------------------------------------------------
+### Input and output locations
+###-------------------------------------------------
+
+inputDirectory =                   data/verify/input
+outputDirectory =                 data/verify/output
+

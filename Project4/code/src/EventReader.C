@@ -146,6 +146,16 @@ void EventReader::Show(Long64_t entry)
 
 //--------------------------------------------------------------------------------------
 
+Double_t EventReader::MaxPt(){
+  Double_t max = GenParticle_PT[0];
+  for( Int_t i = 1; i < GenParticle_; i++ ){
+    if( GenParticle_PT[i] > max ) max = GenParticle_PT[i];
+  }
+  return max;
+}
+
+//--------------------------------------------------------------------------------------
+
 Int_t EventReader::Cut(Long64_t entry)
 {
 // This function may be called from Loop.

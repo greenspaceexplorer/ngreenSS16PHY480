@@ -1,0 +1,206 @@
+
+\documentclass[12pt,twoside]{article}
+\usepackage{amssymb, amsmath, mathrsfs, epsfig,amsfonts}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\setlength{\voffset}{-1in}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{9.5in}
+\setlength{\textwidth}{6.5in}
+\setlength{\hoffset}{0in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\marginparsep}{0in}
+\setlength{\marginparwidth}{0in}
+\setlength{\headsep}{0.25in}
+\setlength{\headheight}{0.5in}
+\pagestyle{fancy}
+
+
+\fancyhead[LO,LE]{Topological Data Analysis}
+\fancyhead[RO,RE]{Tutorial Lab II}
+\chead{}
+\cfoot{}
+\fancyfoot[LO,LE]{}
+\fancyfoot[RO,RE]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand{\footrulewidth}{0.5pt}
+\parindent 0in
+
+\newcommand{\ben}{\begin{enumerate}}
+\newcommand{\een}{\end{enumerate}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Sp}{\vspace{.5in}}
+\newcommand{\defn}{\paragraph*{Definition}}
+\newcommand{\example}{\paragraph*{Example}}
+\newcommand{\examples}{\paragraph*{Examples}}
+\newcommand{\qns}{\paragraph*{Questions}}
+\newcommand{\qn}{\paragraph*{Question}}
+\newcommand{\blank}[1]{\underline{\hspace{#1}}}
+\newcommand{\dsst}{\displaystyle}
+\newcommand{\fcenter}[1]{\begin{center}\fbox{#1}\end{center}}
+\newcommand{\codelist}[1]{\fbox{\scriptsize\texttt{#1}}}
+
+
+\begin{document}
+\begin{center}
+{\large\textbf{More Harmonics: Sliding Windows, and 1-D Persistence}}   
+\end{center}
+
+In this lab, we will study the analysis of the same set of harmonics as in the previous lab.  This time, we will use your newly acquired knowledge of 1-dimensional persistence.\\
+
+To start, a thought exercise:
+
+\qn \begin{enumerate} 
+       \item Draw $Dgm_1(S^1)$, where $S^1$ is the unit sphere in $\mathbb{R}^2$.\vfill
+       \item Suppose we sample some points from $S^1$, but with a small amount of bounded radial noise.  Draw the new 1-dimensional persistence diagram.\vfill
+    \end{enumerate}
+
+\qn Now that we know what to expect, let's use computational tools to compute the same diagrams.  See below for the syntax of the commands used.
+\begin{enumerate}
+\item First, no noise: \begin{enumerate}
+   \item Generate a set of 500 points sampled from the sphere in $\mathbb{R}^2$, with no noise: $$\verb|S=spheresampler(2,1,500,0);| $$ 
+   \item Plot the points to check that they look like they're sampled from a circle.
+   \item Use the command $$\verb|[I1 I0]= rca1pc(S,5);|$$ to calculate the 0- and 1-dimensional persistence intervals for this sample.  \verb|I1| will then contain the 1-D persistence intervals.
+   \item Use the command $\verb|plotpersistencediagram(I1);|$ to plot the diagram.  Compare your answer to the one above.
+\end{enumerate}
+\pagebreak
+
+\item Now, let's make some noise:
+\begin{enumerate}
+   
+
+
+   \item Generate a set of 500 points sampled from the sphere in $\mathbb{R}^2$, with some noise: $$\verb|S=spheresampler(2,1,500,0.2);| $$ 
+   \item Plot the points to check that they look like they're sampled from a circle, with noise.
+   \item Use the command $$\verb|[I1 I0]= rca1pc(S,5);|$$ to calculate the 0- and 1-dimensional persistence intervals for this sample.  \verb|I1| will then contain the 1-D persistence intervals.
+   \item Use the command $\verb|plotpersistencediagram(I1);|$ to plot the diagram.  Compare your answer to the one above.
+\end{enumerate}
+\end{enumerate}
+
+To sample points from an arbitrary dimensional sphere with added radial Gaussian noise, use the following command:
+\begin{center}
+\codelist{\texttt{S = spheresampler(dimension, radius, numpoints, noisemultiplier)}}
+\end{center}
+
+
+To compute the 0- and 1-dimensional persistence diagrams of a point cloud, use the following command
+\begin{center}
+\codelist{\texttt{[I1 I0] = rca1pc(data, distancebound)}}
+\end{center}
+
+
+\section{Sliding Windows}
+\subsection{Basics}
+As you have seen in lecture, signals are often analyzed using a sliding window.  In this section, we will computationally apply these notions to harmonics (single and mixed) to see what we can find.  But first, let's get a handle on how this all works with a simple example.\\
+
+\qn By hand first: Suppose you divide an interval into five evenly spaced ticks, and you are given the function values $[1,0,-2,0,1]$ on those ticks.  
+
+\begin{enumerate}
+   \item By hand, compute and plot the sliding window point cloud in $\mathbb{R}^2$ for this data.\vfill
+
+ \pagebreak
+   
+   \item Sketch the 0- and 1-dimensional persistence diagrams for your point cloud, with the given distance bound:
+   \begin{enumerate}
+      \item Distance bound = 1.\vfill
+      \item Distance bound = 2.\vfill
+      \item Distance bound = 3.\vfill
+      \item Distance bound = 4.\vfill
+   \end{enumerate}
+
+\end{enumerate}
+
+To generate sliding window point clouds in Matlab (from function values), use the following command
+\begin{center}
+\codelist{\texttt{SW = im2col(data,[1,dimension])'}}
+\end{center}
+
+Note especially the \verb|'| operator at the end of that last command.  It transposes a matrix.  Very useful.
+
+\qn Using the same function values and set of distance bounds given in the previous question, use Matlab to compute and plot the 0- and 1-dimensional diagrams for the sliding window in $\mathbb{R}^2$.  Compare them to the diagrams you plotted.  They should be identical.  If not, go back to the previous question and figure out what went wrong.
+
+\pagebreak
+
+\subsection{Harmonics}
+
+
+
+\begin{enumerate}
+   \item To start, consider a simple harmonic of period $1$, $f(x)=\sin(2\pi x)$.
+   \begin{enumerate}
+     \item By hand!
+     \begin{enumerate}
+     \item Using your knowledge from class, predict what the 2- and 3-dimensional sliding window point clouds should look like.  Write a couple of sentences describing them here.\vspace{0.75in}
+     \item Sketch $Dgm_1$ of these two point clouds here.\vfill
+    \end{enumerate}
+    
+     \item Computer time!
+     \begin{enumerate}
+        \item In a variable $s$, store 100 evenly spaced samples from this harmonic.  You may use the \verb|generate_harmonic| function, but you only really need the $y$-values from it, transposed.\\
+        \item Create a sliding-window point cloud of dimension $2$ from your points using the \verb|im2col| command.\\
+        \item Plot your point-cloud.  Does it look like what you expected? \\
+        \item Compute the $Dgm_1$ of your point cloud using \verb|rca1pc|, and plot it using\\ \texttt{plotpersistencediagram}. Does it look like what you expected?\\
+        \item Repeat the above questions for the 3-dimensional sliding window point cloud.
+     \end{enumerate}
+     \pagebreak
+     \item Analysis and higher dimensions!
+     \begin{enumerate}
+        \item Compute the persistence of the 1-cycle you found in each of the two cases.  Is it larger in the 2-D or 3-D case?\vfill
+        \item Repeat the above computation for the 4-D sliding window point cloud (without plotting the point cloud....why?).  You will find more than one 1-cycle.  Plot the persistence diagram and determine which of the 1-cycles you should find the persistence of.  Do so.\vfill
+        \item Repeat for 5-D, etc.\vfill\vfill
+     \end{enumerate}
+
+   
+  \end{enumerate}
+  \item Repeat the above for a mixed harmonic of periods 1 and 2.  Investigate what changing the amplitude of either of the two harmonic components does.  Record your observations here, along with relevant sketches.\vfill\vfill\vfill\vfill
+\end{enumerate}
+
+\pagebreak
+
+\section{Adding Noise}
+
+Investigate the effects of adding noise of various amplitudes to single harmonics and multiple harmonics.\vfill
+
+
+\pagebreak
+
+\section{Non-Periodic Functions}
+
+\qn Take a few minutes away from the computer to think again about what features in the sliding window point clouds correspond to periodicity.\vfill\vfill\vfill
+
+\qn Suppose that instead of a periodic function, we consider a polynomial of degree $n$ with all $n$ real roots, all in the interval under consideration.
+\begin{enumerate}
+   \item Generate data from such a function, on the interval $[-2,2]$.  Record here the commands you use.\vfill
+   \item Generate sliding window point clouds in a few dimensions, and plot their $Dgm_1$'s.  What do you observe?  Did you correctly predict what would happen?  If not, go back to the previous question and consider what you may have missed.\vfill\vfill\vfill\vfill\vfill
+\end{enumerate}
+
+\pagebreak
+
+\section{Pure Noise}
+
+The command \verb|rand()| generates a uniformly distributed random number between $0$ and $1$.
+
+\qn Write a command that will generate a uniformly distributed random number between $-1$ and $1$.\\ \\
+
+As is often the case in Matlab, we can tell it to generate a matrix of random values with $m$ rows and $n$ columns by using the syntax \verb|rand(m, n)|.
+
+\qn Generate 200 uniformly distributed random numbers from the interval $[-2,2]$.  Compute (not by hand) its 2-D sliding window point cloud and the corresponding $Dgm_1$.  Repeat this for higher dimensions and another couple of pure noise data.  Record your observations and relevant sketches here.\vfill
+
+\pagebreak
+\section{Distinguishing Features}
+
+\subsection{Elements of Classification}
+Look back over the four types of data you've studied today and in the previous lab (single harmonics, multiple harmonics, polynomials, and pure noise).  Answer the questions below.
+
+\qns\begin{enumerate}
+       \item In the previous lab, you studied $Dgm_0$ of data sampled from all these different types of functions.  Can you distinguish between all four types using Morse filtration by height and the corresponding 0-dimensional persistence diagrams?  If not, which types can you not distinguish between?  Justify your answers with sketches.\vfill
+       \item Do the same for $Dgm_1$, with sliding window point clouds and the corresponding 1-dimensional persistence diagrams.  Is there anything you can do now that you couldn't do before?  Again, justify your answers with sketches.\vfill
+    \end{enumerate}
+
+\pagebreak
+
+\subsection{Classification!}
+
+Once again, load the cell array from \emph{signalmasterset.mat}.  Using what you learned in this lab and the previous one, attempt to classify the data sets.  The answers are in column 2, but don't look at that until you're done.\vfill
+\label{LastPage}
+\end{document}

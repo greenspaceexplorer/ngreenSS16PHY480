@@ -1,0 +1,82 @@
+###-------------------------------------------------
+### Input parameter settings file for 
+###
+###       Topological
+###        Data
+###         Analysis
+###
+### TDA is licensed from Duke University.
+### Copyright (c) 2012-14 by John Harer.
+### All rights reserved.
+###
+### Settings file consistent with version 0.0.10
+###-------------------------------------------------
+
+###-------------------------------------------------
+### Project information
+###-------------------------------------------------
+
+project =             
+user =                                          
+dataset =             	   
+notes =          
+
+
+###-------------------------------------------------
+### Mode(s) selection
+###-------------------------------------------------
+
+applicationMode =                api  #   standAlone
+suppressAllOutput = yes
+
+###-------------------------------------------------
+### Task and Algorithm selection
+###-------------------------------------------------
+
+taskChoice =                                     M12
+
+###-------------------------------------------------
+### Algorithm component specifications
+###-------------------------------------------------
+
+supplyDataAs =                            pointCloud
+switchToSparseAt =                              5000
+
+# for creating set of edges from point cloud (RCA1 alg.)
+distanceBoundOnEdges =		                   2
+pointCloudFile =                              D2.txt 
+
+
+
+convertDataToSparseMatrixFormat = # yes
+sparseMatrixOutputFile =  # sparseMatrix_@TS@.txt
+
+
+###-------------------------------------------------
+### Metric selection
+###-------------------------------------------------
+
+metricChoice =                                    L2
+p_valueForLpMetric =                               
+
+zp_value = 
+
+###-------------------------------------------------
+### Diagram related output
+###-------------------------------------------------
+
+#pythonPlotCommandsFile = 
+0DintervalsFile =               0Dintervals.@TS@.txt
+1DintervalsFile =               1Dintervals.@TS@.txt
+1DdiagramFile =                       1Dpic.@TS@.png
+
+
+###-------------------------------------------------
+### Input and output locations
+###-------------------------------------------------
+
+inputDirectory =       bin/config/example_rca1/input
+outputDirectory =     bin/config/example_rca1/output
+reportFile =                   results_rca1.@TS@.txt
+
+

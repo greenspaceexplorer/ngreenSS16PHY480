@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <random>
+using namespace std;
+
+inline unsigned int VecMin( vector<double> something ){
+  unsigned int min = 0;
+  for( unsigned int i = 1; i < something.size(); i++ ){
+    if( something.at(i) < something.at(min)){
+      min = i;
+    }
+  }
+  return min;
+}
+
+int main(){
+  default_random_engine generator;
+  uniform_real_distribution<double> distribution(0.0,1.0);
+
+  vector< vector< double > > test;
+
+  for( unsigned int i = 0; i < 20; i++ ){
+    vector< double > subtest;
+    for( unsigned int j = 0; j < 20; j++ ){
+      subtest.push_back(distribution(generator));
+    }
+    test.push_back(subtest);
+  }
+
+  double tolerance = 0.1;
+  
+  for( unsigned int i = 0; i < test.size(); i++ ){
+    unsigned int nn = VecMin(test.at(i));
+    if( test.at(i).at(nn) > tolerance ){
+      for( unsigned int k = 0; k < test.size(); k++ ){
+	test.at(k).erase(test.at(k).begin()+nn-1);
+      }
+      test.erase(test.begin()+i-1);
+    }
+  }
+
+  for( unsigned int i = 0; i < test.size(); i++ ){
+    for( unsigned int j = 0; j < test.at(i).size(); j++ ){
+      cout << test.at(i).at(j) << ",";
+    }    
+    cout << endl;
+  }
+  return 0;
+}

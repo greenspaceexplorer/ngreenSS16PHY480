@@ -172,31 +172,104 @@ Double_t ComplexBuilder::Distance( Long64_t i_p1, Long64_t i_p2, ClusterAlg alg 
 
 //--------------------------------------------------------------------------------------
 
-void ComplexBuilder::MetricSpace( Long64_t ievent, ClusterAlg alg, string filename ){
+void ComplexBuilder::MetricSpace( Long64_t ievent, ClusterAlg alg ){
 
   SelectEvent(ievent);
 
+  // clear any previously stored metric space
+  _vMetricSpace.clear();
+
+  // store metric space in _vMetricSpace
+  //for( Long64_t i = 0; i < 150; i++ ){
+  for( Long64_t i = 0; i < Nparticle(); i++ ){
+    vector< Double_t > row;
+    //for( Long64_t j = 0; j < 150; j++ ){
+    for( Long64_t j = 0; j < Nparticle(); j++ ){
+      if( IsFinalParticle(i) && IsFinalParticle(j) ){
+	row.push_back(Distance(i,j,alg)); 
+      }
+    }
+    if( IsFinalParticle(i) ){
+      _vMetricSpace.push_back(row);
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------------
+
+void ComplexBuilder::DensityFilter( Double_t tolerance ){
+
+  if( _vMetricSpace.size() == 0 ){
+    cout << "Error: must calculate a metric space before applying filter"
+	 << endl;
+    exit(1);
+  }
+
+  unsigned int min;
+  for( unsigned int i = 0; i < _vMetricSpace.size(); i++ ){
+    // get distance to nearest neighbour
+    if(i == 0 ){
+       min = 1;
+    }
+    else{
+       min = 0;
+    }
+    for( unsigned int j = 0; j < _vMetricSpace.at(i).size(); j++ ){
+      if( i == j ) continue;
+      if( _vMetricSpace.at(i).at(j) <_vMetricSpace.at(i).at(min) ){
+	min = j;
+      }
+    }
+
+    // check if distance is > tolerance and delete point if so
+    if( _vMetricSpace.at(i).at(min) > tolerance ){
+      for( unsigned int k = 0; k < _vMetricSpace.size(); k++ ){
+	_vMetricSpace.at(k).erase(_vMetricSpace.at(k).begin()+i-1);
+      }
+      _vMetricSpace.erase(_vMetricSpace.begin()+i-1);
+      i--;
+    }
+  }
+
+  if( _vMetricSpace.size() == 0 ){
+    cout << "Error: density tolerance too small - no points remaining" << endl;
+    exit(1);
+  }  
+
+}
+
+//--------------------------------------------------------------------------------------
+
+void ComplexBuilder::MetricSpaceCSV( string filename ){
+  if( _vMetricSpace.size() == 0 ){
+    cout << "Error: must calculate a metric space before attempting to write to file"
+	 << endl;
+    exit(1);
+  }
+
   string outfilename = filename + ".csv";
   ofstream fileout( outfilename.c_str(), ios::out );
-
+ 
   if(!fileout){
     cout << "Error: could not open " << outfilename << endl;
     exit(1);
   }
 
-  // write matrix to file
-  for( Long64_t i = 0; i < Nparticle(); i++ ){
-    for( Long64_t j = 0; j < Nparticle(); j++ ){
-      if( IsFinalParticle(i) && IsFinalParticle(j) ){
-	fileout << Distance(i,j,alg); 
-	if( j != Nparticle() - 1 ){
-	  fileout << ",";
-	}
+  unsigned int nrow = _vMetricSpace.size();
+  //cout << "Size of metric space = " << nrow << endl;
+  for( unsigned int i = 0; i < nrow; i++ ){
+    unsigned int ncol = _vMetricSpace.at(i).size();
+    if( nrow != ncol ){
+      cout << "Error: metric space not a square matrix" << endl;
+      exit(1);
+    }
+    for( unsigned int j = 0; j < ncol; j++ ){
+      fileout << setprecision(5) << _vMetricSpace.at(i).at(j);
+      if( j != ncol- 1 ){
+	fileout << ",";
       }
     }
-    if( IsFinalParticle(i) ){
-      fileout << endl;
-    }
+    fileout << endl;
   }
   fileout.close();
 }
