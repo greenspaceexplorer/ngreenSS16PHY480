@@ -4,6 +4,7 @@
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
+#include <TGraph.h>
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -58,11 +59,16 @@ class ComplexBuilder{
   // writes explicit metric space to .csv
   void MetricSpaceCSV( string );
 
+  TGraph* PlotPtEtaPhi();
+
   EventReader *event;  
 
  private:
   vector< vector< Double_t > > _vMetricSpace;
+  vector< Int_t > skip_list;
   Long64_t nevents;
+  Double_t max_eta;
+
 
 };
 

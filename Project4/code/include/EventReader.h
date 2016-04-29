@@ -41,6 +41,7 @@ public :
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
    Double_t         MaxPt();
+   Double_t         MaxEta();
 
    TChain         *fChain;   //!pointer to the analyzed TChain
    Int_t           fCurrent; //!current Tree number in a TChain

@@ -19,6 +19,7 @@ int main(){
   ComplexBuilder TopComplex( TopoEvents );
   cout << TopComplex.Nevent() << " events loaded." << endl;
 
+  /*
   //=====================================================================================
   // Make metric space and point cloud plot for a single event
   //=====================================================================================
@@ -40,7 +41,7 @@ int main(){
   etaphi->GetYaxis()->SetTitle("#eta");
   string pdfname = name.str() + ".pdf";
   c1->SaveAs(pdfname.c_str());
-  
+  */
 
   //=====================================================================================
   // Make metric space and point cloud plot for a single event
@@ -49,7 +50,9 @@ int main(){
   double progress;
   Double_t pt_cut_low = 230.; // minimum transverse momentum
   Double_t pt_cut_high = 240.; // maximum transverse momentum
-  string sample_cluster = "top_pt_230-240/top_ca_"; // storage directory and beginning of .csv filename
+
+  string sample_cluster = "top_pt_230-240/top_ca_"; // beginning of .csv filename
+
   for( unsigned int i = 0; i < 1000; i++ ){ // iterate over 1st 1000 events
  //for( unsigned int i = 0; i < TopComplex.Nevent(); i++ ){ // iterate over all loaded events
     TopComplex.SelectEvent(i);

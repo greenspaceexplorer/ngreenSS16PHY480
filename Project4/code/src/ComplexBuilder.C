@@ -11,6 +11,7 @@ ComplexBuilder::ComplexBuilder( EventReader *EventsIn ){
 	exit(1);
   }
   nevents = event->fChain->GetEntries();
+  max_eta = 4.;
 }
 
 //--------------------------------------------------------------------------------------
@@ -24,7 +25,9 @@ void ComplexBuilder::SelectEvent( Long64_t ievent ){
 	cout << "Error: invalid event index" << endl;
 	exit(1);
   }
-  
+
+  skip_list.clear();
+
   event->LoadTree(ievent);
   event->b_Event_->GetEntry(ievent);
   event->b_Event_fUniqueID->GetEntry(ievent);
@@ -88,8 +91,13 @@ bool ComplexBuilder::IsFinalParticle( Long64_t iparticle ){
   // true if particle has daughters
   bool has_daughters = (event->GenParticle_D1[iparticle] >= 0 &&
 			event->GenParticle_D2[iparticle] >= 0);
+  bool eta_cut = (event->GenParticle_Eta[iparticle] < max_eta);
   
-  return (!proton && !q_or_glu && !w_or_z && !has_daughters);
+  bool good_particle = (!proton && !q_or_glu && !w_or_z && !has_daughters && eta_cut);
+
+  if( !good_particle ){ skip_list.push_back(iparticle); }
+
+  return good_particle;
 
 }
 
@@ -185,7 +193,7 @@ void ComplexBuilder::MetricSpace( Long64_t ievent, ClusterAlg alg ){
     vector< Double_t > row;
     //for( Long64_t j = 0; j < 150; j++ ){
     for( Long64_t j = 0; j < Nparticle(); j++ ){
-      if( IsFinalParticle(i) && IsFinalParticle(j) ){
+      if( IsFinalParticle(i) && IsFinalParticle(j)){
 	row.push_back(Distance(i,j,alg)); 
       }
     }
@@ -195,7 +203,7 @@ void ComplexBuilder::MetricSpace( Long64_t ievent, ClusterAlg alg ){
   }
 }
 
-//--------------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------
 
 void ComplexBuilder::DensityFilter( Double_t tolerance ){
 
@@ -223,6 +231,7 @@ void ComplexBuilder::DensityFilter( Double_t tolerance ){
 
     // check if distance is > tolerance and delete point if so
     if( _vMetricSpace.at(i).at(min) > tolerance ){
+      skip_list.push_back(i);
       for( unsigned int k = 0; k < _vMetricSpace.size(); k++ ){
 	_vMetricSpace.at(k).erase(_vMetricSpace.at(k).begin()+i-1);
       }
@@ -272,6 +281,32 @@ void ComplexBuilder::MetricSpaceCSV( string filename ){
     fileout << endl;
   }
   fileout.close();
+}
+
+//--------------------------------------------------------------------------------------
+
+TGraph* ComplexBuilder::PlotPtEtaPhi(){
+  TGraph *a = new TGraph();
+  int pointcount = 0;
+  bool skip;
+  for( Int_t i = 0; i < event->GenParticle_; i++  ){
+    skip = false;
+    if( skip_list.size() != 0 ){
+      unsigned int iskip = 0;
+      while(!skip && iskip < skip_list.size()){
+	if( i == skip_list.at(iskip)){
+	  skip = true;
+	}
+	iskip++;
+      }
+    }
+    if( abs(event->GenParticle_Eta[i]) < max_eta && !skip){
+      a->SetPoint(pointcount,event->GenParticle_Phi[i],event->GenParticle_Eta[i]);
+      pointcount++;
+    }
+  }
+
+  return a;
 }
 
 //--------------------------------------------------------------------------------------

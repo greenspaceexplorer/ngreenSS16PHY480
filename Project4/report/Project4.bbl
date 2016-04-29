@@ -1,0 +1,64 @@
+\begin{thebibliography}{10}
+
+\bibitem{Aad:2008}
+G.~Aad et~al.
+\newblock {The ATLAS Experiment at the CERN Large Hadron Collider}.
+\newblock {\em JINST}, 3:S08003, 2008.
+
+\bibitem{Aad:2014}
+Georges Aad et~al.
+\newblock {Search for the $b\bar{b}$ decay of the Standard Model Higgs boson in
+  associated $(W/Z)H$ production with the ATLAS detector}.
+\newblock {\em JHEP}, 01:069, 2015.
+
+\bibitem{madgraph:2011}
+Johan Alwall, Michel Herquet, Fabio Maltoni, Olivier Mattelaer, and Tim
+  Stelzer.
+\newblock {MadGraph 5 : Going Beyond}.
+\newblock {\em JHEP}, 06:128, 2011.
+
+\bibitem{salam:2011}
+Matteo Cacciari, Gavin~P. Salam, and Gregory Soyez.
+\newblock {FastJet User Manual}.
+\newblock {\em Eur. Phys. J.}, C72:1896, 2012.
+
+\bibitem{Ghrist:2008}
+Robert Ghrist.
+\newblock Barcodes: the persistent topology of data.
+\newblock {\em Bull. Amer. Math. Soc.}, 45:61--75, 2008.
+
+\bibitem{Griff:2010}
+David Griffiths.
+\newblock {\em Introduction to Elementary Particles}.
+\newblock WILEY-VCH Verlag GmbH and Co., 2010.
+
+\bibitem{Harer:2010}
+John~L. Harer and Herbert Edelsbrunner.
+\newblock {\em Computational Topology: An Introduction}.
+\newblock The American Mathematical Society, 2010.
+
+\bibitem{Pythia:2006}
+Torbjorn Sjostrand, Stephen Mrenna, and Peter~Z. Skands.
+\newblock {PYTHIA 6.4 Physics and Manual}.
+\newblock {\em JHEP}, 05:026, 2006.
+
+\bibitem{Javaplex}
+Andrew Tausz, Mikael Vejdemo-Johansson, and Henry Adams.
+\newblock Java{P}lex: {A} research software package for persistent
+  (co)homology.
+\newblock In Han Hong and Chee Yap, editors, {\em Proceedings of ICMS 2014},
+  Lecture Notes in Computer Science 8592, pages 129--136, 2014.
+
+\bibitem{Thaler:2010}
+Jesse Thaler and Ken Van~Tilburg.
+\newblock {Identifying Boosted Objects with N-subjettiness}.
+\newblock {\em JHEP}, 03:015, 2011.
+
+\bibitem{TDA}
+Chris Tralie.
+\newblock User's guide for tdatools package.
+\newblock
+  \\\textit{http://www.ctralie.com/Teaching/Math412\_F2014\_MusicAssignment/TDATools\_UsersGuide.pdf},
+  2014.
+
+\end{thebibliography}

@@ -1,1 +1,25 @@
-Placeholder
+Directions for use:
+   In src/main.C:
+      set DataDirectory to the absolute path to the event files
+      set EventFile to the absolute path to the event file list (this should already be in the src directory)
+      uncomment task you would like to do
+      set sample_cluster to the filename prefix to which you would like to save plots/metric spaces
+   
+   In src/eventfiles.dat:
+      uncomment event files over which you would like to run ( "#" is the comment symbol )
+   
+   In "code" directory:
+      type "make"
+      run ./TopoJets
+         -This will make .csv files with the distances b/w each of the points in the point clouds
+      open Matlab
+      run init.m to load TDATools
+      open diagram.m and change dir_name to the absolute pathto the .csv files made with ./TopoJets (make sure these are the only files in that directory)
+      run diagram.m to make persistence diagrams of the .csv metric spaces that were made with ./TopoJets
+
+Requirements:
+   Root version 5.xx
+   Matlab version 9
+
+Link to event files:
+   https://www.dropbox.com/sh/qr6ox41nw0lom88/AACxW5PjizaE6BpxCJ5Gg0vRa?dl=0

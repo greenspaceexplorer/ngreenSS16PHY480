@@ -156,6 +156,17 @@ Double_t EventReader::MaxPt(){
 
 //--------------------------------------------------------------------------------------
 
+Double_t EventReader::MaxEta(){
+  Double_t max = GenParticle_Eta[0];
+  for( Int_t i = 1; i < GenParticle_; i++ ){
+    if( GenParticle_Eta[i] > max ) max = GenParticle_Eta[i];
+  }
+  return max;
+}
+
+
+//--------------------------------------------------------------------------------------
+
 Int_t EventReader::Cut(Long64_t entry)
 {
 // This function may be called from Loop.

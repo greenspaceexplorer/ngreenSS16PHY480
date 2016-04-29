@@ -18,7 +18,8 @@ plot(diagonal,diagonal);  % plot the diagonal
 hold on
 
 axis([1.2*m 1.2*M 1.2*m 1.2*M]); % set axes to include all points, with a bit of space on both sides
-
+xlabel('Distance at Birth');
+ylabel('Distance at Death');
 
 scatter(plotpts(:,1),plotpts(:,2),40, 'fill'); % plot the points on the persistence diagram
 hold off
