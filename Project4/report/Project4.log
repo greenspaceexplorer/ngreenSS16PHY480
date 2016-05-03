@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.14)  29 APR 2016 15:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.1.14)  3 MAY 2016 00:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -543,73 +543,81 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 22.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 66.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 49.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 66.
- [1]
-<compare.pdf, id=18, 352.81418pt x 182.09764pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 49.
+ [2]
+<compare.pdf, id=21, 352.81418pt x 182.09764pt>
 File: compare.pdf Graphic file (type pdf)
  <use compare.pdf>
-Package pdftex.def Info: compare.pdf used on input line 75.
+Package pdftex.def Info: compare.pdf used on input line 58.
 (pdftex.def)             Requested size: 195.63815pt x 100.9737pt.
- [2 <./compare.pdf>] [3] <circle_barcode_pc.pdf, id=32, 571.13216pt x 246.78796
-pt>
+ [3 <./compare.pdf>] <complex_example.pdf, id=31, 301.76479pt x 229.73094pt>
+File: complex_example.pdf Graphic file (type pdf)
+
+<use complex_example.pdf>
+Package pdftex.def Info: complex_example.pdf used on input line 90.
+(pdftex.def)             Requested size: 195.63815pt x 148.94124pt.
+ [4] [5 <./complex_example.pdf>] [6]
+<circle_barcode_pc.pdf, id=45, 571.13216pt x 246.78796pt>
 File: circle_barcode_pc.pdf Graphic file (type pdf)
 
 <use circle_barcode_pc.pdf>
-Package pdftex.def Info: circle_barcode_pc.pdf used on input line 122.
+Package pdftex.def Info: circle_barcode_pc.pdf used on input line 162.
 (pdftex.def)             Requested size: 391.28378pt x 169.07507pt.
- [4 <./circle_barcode_pc.pdf>] [5] [6]
-<ttbar.pdf, id=48, 1012.78381pt x 715.67375pt>
+ [7 <./circle_barcode_pc.pdf>] [8] [9]
+<ttbar.pdf, id=60, 1012.78381pt x 715.67375pt>
 File: ttbar.pdf Graphic file (type pdf)
  <use ttbar.pdf>
-Package pdftex.def Info: ttbar.pdf used on input line 211.
+Package pdftex.def Info: ttbar.pdf used on input line 251.
 (pdftex.def)             Requested size: 293.4647pt x 207.36534pt.
 
-<jets.pdf, id=49, 1223.7494pt x 604.25745pt>
+<jets.pdf, id=61, 1223.7494pt x 604.25745pt>
 File: jets.pdf Graphic file (type pdf)
  <use jets.pdf>
-Package pdftex.def Info: jets.pdf used on input line 219.
+Package pdftex.def Info: jets.pdf used on input line 259.
 (pdftex.def)             Requested size: 391.28378pt x 193.20958pt.
- [7 <./ttbar.pdf>]
-[8 <./jets.pdf>] <H0_both.pdf, id=66, 806.49567pt x 316.2834pt>
+ [10 <./ttbar.pdf> <./jets.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./jets.pdf): PDF inclusion: multiple pd
+fs with page group included in a single page
+>] <H0_both.pdf, id=74, 806.49567pt x 316.2834pt>
 File: H0_both.pdf Graphic file (type pdf)
-
-<use H0_both.pdf>
-Package pdftex.def Info: H0_both.pdf used on input line 244.
+ <use H0_both.pdf>
+Package pdftex.def Info: H0_both.pdf used on input line 284.
 (pdftex.def)             Requested size: 391.28378pt x 153.45035pt.
- <H1_both.pdf, id=67, 807.0808pt x 316.57242pt>
-File: H1_both.pdf Graphic file (type pdf)
 
-<use H1_both.pdf>
-Package pdftex.def Info: H1_both.pdf used on input line 250.
+<H1_both.pdf, id=75, 807.0808pt x 316.57242pt>
+File: H1_both.pdf Graphic file (type pdf)
+ <use H1_both.pdf>
+Package pdftex.def Info: H1_both.pdf used on input line 290.
 (pdftex.def)             Requested size: 391.28378pt x 153.47946pt.
- [9 <./H0_both.pdf> <./H1_both.pdf
+ [11] [12 <./H0_both.pdf> <./H1_both.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./H1_both.pdf): PDF inclusion: multiple
  pdfs with page group included in a single page
->] (./Project4.bbl [10]
+>] (./Project4.bbl [13]
 Overfull \hbox (27.89204pt too wide) in paragraph at lines 58--63
 \OT1/cmr/m/it/12 http://www.ctralie.com/Teaching/Math412[]F2014[]MusicAssignmen
 t/TDATools[]UsersGuide.pdf\OT1/cmr/m/n/12 ,
  []
 
-[11
+[14
 
-]) [12] (./Project4.aux) ) 
+]) [15] (./Project4.aux) ) 
 Here is how much of TeX's memory you used:
- 3361 strings out of 493304
- 45488 string characters out of 6139871
- 115368 words of memory out of 5000000
- 6726 multiletter control sequences out of 15000+600000
+ 3368 strings out of 493304
+ 45625 string characters out of 6139871
+ 117388 words of memory out of 5000000
+ 6732 multiletter control sequences out of 15000+600000
  14039 words of font info for 56 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,6n,32p,1104b,319s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,32p,1270b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
@@ -621,10 +629,10 @@ exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Project4.pdf (14 pages, 285327 bytes).
+Output written on Project4.pdf (17 pages, 293207 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
+ 143 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

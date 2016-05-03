@@ -26,42 +26,25 @@
 
 \doublespacing
 \section{Introduction}\label{sec:intro}
-Persistent homology is a powerful mathematical tool that is still maturing in the world of topological data analysis. It can be used on any data that can be made into a point cloud. The mathematics behind persistent homology will be covered in section \ref{sec:ph}, but it is essentially a technique to find the number of $n$-dimensional holes that stick around the longest as the points are systematically connected to each other. One area in physics where this could possibly be useful is in the analysis of particle jets. 
+Persistent homology is a powerful mathematical tool that is still maturing in the world of topological data analysis. It can be used on any data that can be made into a point cloud. The mathematics behind persistent homology will be covered in section \ref{sec:ph}, but it is essentially a technique to find the number of $n$-dimensional holes that stick around the longest as the points are systematically connected to each other. 
 
-% Persistent homology is a powerful mathematical tool that is still maturing in the world of topological data analysis. It can be used on any data that can be made into a point cloud. It has proven to be a strong tool for analyzing the structure of data. This could be very useful for physics in the analysis of particle jets. 
+One area in physics where this could possibly be useful is in the analysis of particle jets. As particle accelerators that operate at ever higher energies are built, they will produce heavy relativistic particles that decay into jets. Since these jets are formed in a highly boosted reference frame, they leave the event side-by-side instead of back-to-back. This makes it difficult to differentiate between single and multiple jet events with similar energies and momenta. There are many tools that can help with these events, and persistent homology could possibly be used to improve or replace some of them.
 
-Jets are the signature of interactions involving gluons and quarks (a.k.a. QCD interactions) in today's particle accelerators. Say that a quark and antiquark are formed in the center-of-momentum frame. Initially, they move apart from each other as free particles with equal and opposite momentum. However, due to asymptotic freedom, the strong force between them becomes incredibly strong as the quarks get about a femtometer from each other. At this point, if the quarks have enough energy, it becomes energetically favorable - as opposed to the quarks to continue pouring more energy into the strong force bond between them as they move apart - for new quark-antiquark pairs to be produced. This can happen many times over, with the new quark-antiquark pairs combining to form a shower of mesons and baryons. This process is called \textit{hadronization}, and the resulting shower of particles is called a \textit{jet}.
+In section \ref{sec:jets}, jets are explained more thoroughly. Some current jet clustering and analysis techniques are discussed in section \ref{sec:ja}. A proof-of-concept demonstration and suggestions to improve current jet clustering techniques with persistent homology are proposed in section \ref{sec:tdajet}.  
 
-Working backwards and finding out what formed a jet not only allows for the identification of the original quark/gluon that caused it, but also works as a test of our knowledge of how the strong force works. Calculating the persistent homology on a collision that produces jets could help develop better algorithms to cluster particles into jets. Some current jet clustering and analysis techniques are discussed in section \ref{sec:ja}. A proof-of-concept demonstration and suggestions to improve current jet clustering techniques with persistent homology are proposed in section \ref{sec:tdajet}. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% \begin{itemize}
-%  \item ``Define'' a jet.
-%  
-%  
-%  
-%  \item Explain how jets are the manifestation of qcd processes in an event.
-%  
-%  There are four known fundamental forces in nature: gravity, electromagnetism, and the weak and strong nuclear forces. These forces can only be understood by observing the objects with which they interact. For example, one must observe how gravity causes massive objects to move understand it. Similarly, in order to understand the strong nuclear force, it is necessary to see how it causes subatomic particles to interact. 
-%  
-%  The strong force is carried by gluons which can interact with quarks, anti-quarks, and each other. Unlike electromagnetism or gravity, the strong force asymptotically increases in strength up to a distance on the order of a femtometer. This is referred to as the asymptotic freedom of the strong force, and it has an important consequence for detecting events in which the strong force is involved.  
-%  
-%  \item Short explanation of how jets are formed
-%  
-%  Say that a quark and antiquark are formed in the center-of-momentum frame. Initially, they move apart from each other as free particles with equal and opposite momentum. However, due to asymptotic freedom, the strong force between them becomes incredibly strong as the quarks get about a femtometer from each other. At this point, if the quarks have enough energy, it becomes energetically favorable - as opposed to the quarks to continue pouring more energy into the strong force bond between them as they move apart - for new quark-antiquark pairs to be produced. This can happen many times over, with the new quark-antiquark pairs combine to form a shower of mesons and baryons. This process is called \textit{hadronization}, and the resulting shower of particles is called a \textit{jet}.
-%  
-%  Jets can be detected in today's particle accelerators, and they are the signature of interactions involving gluons and quarks (a.k.a. QCD interactions). Working backwards and finding out what formed a jet not only allows for the identification of the original quark/gluon that caused it, but also works as a test of our knowledge of how the strong force works.  
-%  
-%  \item Summarize structure of report
-%   
-%  Section \ref{sec:physics} discusses the processes that produce jets in more detail. Section \ref{sec:detection} discusses how jets are detected in today's particle accelerators. Jet reconstruction and analysis is a major challenge for researchers, and some of the current techniques used for this are discussed in section \ref{sec:analysis}. Finally, section \ref{sec:conclusion} concludes with some of the challenges that jets will pose researchers in the future as collider technology advances.
-%  
-% \end{itemize}
+\section{Particle Jets}\label{sec:jets}
+ There are four known fundamental forces in nature: gravity, electromagnetism, and the weak and strong nuclear forces. These forces can only be understood by observing the objects with which they interact. For example, one must observe how gravity causes massive objects to move understand it. Similarly, in order to understand the strong nuclear force, it is necessary to see how it causes subatomic particles to interact. 
+ 
+  Unlike electromagnetism or gravity, the strong force asymptotically increases in strength up to a distance on the order of a femtometer. This is a clue to the nature of strong force interactions. The strong force has three varieties of charge mnemonically named ``red,'' ``green,'' and ``blue,'' and associated anti-charges. Quarks are fermions that posses this color charge, where each quark has one of these color charges at a time. The strong force interactions occur when quarks change their colors via the exchange of gluons, the carriers of the strong force. Since each quark can only have one color at a time, this means that gluons need to carry two colors: one to give a quark a new color, and another to annihilate the color it already had. This differentiates gluons from photons, which are charge neutral, because this also allows gluons to interact with each other. Hence, as quarks move apart from each other, gluons have a longer time to interact with each other as they are exchanged between the quarks, which increases the strength of the strong force between the quarks. This is referred to as the asymptotic freedom of the strong force, and it has an important consequence for detecting events in which the strong force is involved.  
+ 
+ Jets are the signature of interactions involving gluons and quarks (a.k.a. QCD interactions) in today's particle accelerators. Say that a quark and antiquark are formed in the center-of-momentum frame. Initially, they move apart from each other as free particles with equal and opposite momentum. However, due to asymptotic freedom, the strong force between them becomes incredibly strong as the quarks get about a femtometer from each other. At this point, if the quarks have enough energy, it becomes energetically favorable - as opposed to the quarks to continue pouring more energy into the strong force bond between them as they move apart - for new quark-antiquark pairs to be produced. This can happen many times over, with the new quark-antiquark pairs combining to form a shower of mesons and baryons. This process is called \textit{hadronization}, and the resulting shower of particles is called a \textit{jet}.
+ 
 
 \section{Persistent Homology}\label{sec:ph}
 
-Before we dive into persistent homology, a few mathematical concepts are needed. 
+Persistent homology lies in the mathematical realm of topology. In topology, mathematicians are not really concerned with shapes as we think of them classically. Instead, they are concerned with how many pieces a space is divided into, and how many holes is has. Applying this to particle jets, we would like to look at the set of spatial coordinates of particles from an event, and determine how many pieces it has. If we can filter out non-jet components of the event, this should tell us the number of jets.
+
+First, a few mathematical concepts are needed. 
 \begin{itemize}
 \item A \textbf{simplex} is a generalization of a triangle. Hence, a 0-simplex is a point, a 1-simplex is an edge, a 2-simplex is a triangle (including its face), a 3-simplex is a tetrahedron (including the points inside). The analogy continues for higher dimensions, but the precise mathematical definition is not required for understanding. Note that the faces of a simplex are themselves simplices of a lower dimension.
 \item A \textbf{simplicial complex} is a collection of simplices, $K$, so that 
@@ -100,21 +83,78 @@ With the proper language in place, we can now get to homology. The $n^{th}$ homo
  H_n(K;\mathbb{Z}) = Z_n(K;\mathbb{Z})/B_n(K;\mathbb{Z}),
 \]
 or in other words, it is the group of cycles modulo the group of boundaries. The dimension of the homology group is a direct reflection of the number of holes that a simplicial complex has. For example, if we stretched a circle, $S^1$, into a triangle then calculating the homology would pick up the 1-cycle going around the triangle to give $H_1(S^1;\mathbb{Z}) = \mathbb{Z}$. If we did the same process to a figure-eight, then it would pick up two 1-cycles to give $H_1(\textrm{figure-eight};\mathbb{Z}) = \mathbb{Z}\oplus\mathbb{Z}$.
-% 
-% To go over the algorithm of how to find the homology of a simplicial complex, take the following as an example
 
-The full algorithm to find the homology of a simplicial complex is beyond the scope of this paper, but it can be summarized. 
-\begin{enumerate}
- \item Calculate the $(n+1)^{th}$ boundary operator as a matrix. This can be done by having the rows represent the $n$-simplices in the simplicial complex, and columns that have the coefficients of the $(n-1)$-simplices that come from applying the operator.
- \item Reduce the matrices to Smith-normal form using row and column operations. Smith-normal form is achieved when the only non-zero terms are on the diagonal, and the $M_{i,i}^{th}$ diagonal divides the $M_{i+1,i+1}^{th}$ term on the diagonal. Keep track of the linear combinations of simplices that are formed by each row/column operation during this process.
- \item There is a useful theorem for $\varphi\in C_{n+1}(K;\mathbb{Z})$ which says that $\partial_{n}(\partial_{n+1}(\varphi)) = 0$. Hence, the generators of the kernel of $\partial_n$ and the image of $\partial_{n+1}$ can just be read off from the Smith-normal form matrix. By taking the generators of the kernel of $\partial_n$ modulo the generators of the image of $\partial_{n+1}$, the $n^{th}$ homology group of the simplicial complex is recovered.
-\end{enumerate}
+  \singlespacing
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=0.4\textwidth]{complex_example.pdf}
+ \caption{\label{fig:example} A simple simplicial complex, consisting of 4 0-simplices (points), 5 1-simplices (edges), and 1 2-simplex (the blue triangle). Note that the vertices have been labeled, and the simplices have their ordering indicated by arrows. }
+\end{figure}
+\doublespacing 
+
+ To show the algorithm to find the homology of a simplicial complex $K$, we will use figure \ref{fig:example} and calculate $H_1(K;\mathbb{Z})$.
+ \begin{enumerate}
+  \item Calculate $\partial_1$ and $\partial_2$ for each simplex to make \textit{boundary matrices} for the groups of 1-chains and 2-chains on $K$.
+
+\[
+\partial_1(K) = \left(
+\begin{array}{l|ccccc}
+ & \{0,1\} & \{0,2\} & \{0,3\} & \{1,2\} & \{2,3\}\\
+ \hline
+\{0\} & 1 & 1 & 1 & 0 & 0\\
+\{1\} & -1 & 0 & 0 & 1 & 0\\
+\{2\} & 0 & -1 & 0 & 0 & 1\\
+\{3\} & 0 & 0 & -1 & 0 & -1
+ \end{array}\right)
+\]
+
+\[ 
+\partial_2(K)= \left(
+\begin{array}{l|c}
+ & \{0,1,2\}\\
+ \hline
+\{0,1\} & 1\\
+\{0,2\} & -1\\
+\{1,2\} & 1
+ \end{array}\right)
+\]
+
+\item Find the 1-chains in the image of $\partial_2(K)$ and the kernel of $\partial_1(K)$. This can be done by reducing each boundary matrix to Smith-normal form, while keeping track of the new bases after each row or column operation.
+
+\[
+\partial_1(K) \rightarrow \left(
+\begin{array}{l|ccccc}
+ & \{0,1\} & \{1,2\} & \{2,3\} & \begin{array}{c}\{0,1\} \\ + \{1,2\} \\ - \{0,2\} \end{array} & \begin{array}{c}\{2,3\} \\ + \{0,2\} \\ - \{0,3\}\end{array}\\
+ \hline
+\{0\} & 1 & 0 & 0 & 0 & 0\\
+\{0\}+\{1\} & 0 & 1 & 0 & 0 & 0\\
+\{0\}+\{1\}+\{2\} & 0 & 0 & 1 & 0 & 0\\
+\{0\}+\{1\}+\{2\}+\{3\} & 0 & 0 & 0 & 0 & 0
+ \end{array}\right)
+\]
+
+\[ 
+\partial_2(K)\rightarrow \left(
+\begin{array}{l|c}
+ & \{0,1,2\}\\
+ \hline
+\{0,1\} + \{1,2\} - \{0,2\}& 1\\
+\{0,2\} + \{0,1\} & 0\\
+\{1,2\} - \{0,1\} & 0
+ \end{array}\right)
+\]
+
+Hence, $B(K;\mathbb{Z}) = Im(\partial_2(K)) = \left[\{0,1\} + \{1,2\} - \{0,2\}\right]$ and $Z(K;\mathbb{Z}) = Ker(\partial_1(K)) = \left[\{0,1\} + \{1,2\} - \{0,2\},\,\{2,3\} + \{0,2\} - \{0,3\}\right]$, where the square brackets denote that any integer multiple of these 1-chains will be in their respective set as well.
+\item Find $H_1(K;\mathbb{Z}) = Z(K;\mathbb{Z})\setminus B(K;\mathbb{Z})$. This simply involves seeing what is in both $Z(K;\mathbb{Z})$ and $B(K;\mathbb{Z})$, and modding it out. In this case, we can see that both groups have the element $\{0,1\} + \{1,2\} - \{0,2\}$. That element gets removed, and what remains are the integer multiples of $\{2,3\} + \{0,2\} - \{0,3\}$. Hence $H_1(K;\mathbb{Z}) \simeq \mathbb{Z}$.
+  \end{enumerate}
 
 The persistence part of persistent homology requires one additional concept. A \textbf{filtration} of a simplicial complex $K$ is a sequence $\emptyset = K_0\subset K_1\subset K_2\subset \ldots\subset K_{N-1}\subset K_N = K$ such that each $K_i$ is a simplicial complex. An example is the Rips filtration, $R_\varepsilon(x)$, where given a set $X$ and a distance metric $\rho: X\times X\rightarrow [0,\inf)$ and $\varepsilon > 0$
 \[
  R_\varepsilon(x) = \{\{x_0,\ldots,x_n\}|\rho(x_i,x_j)<\varepsilon, 0\leq i,j \leq n\}.
 \]
 In other words, the Rips filtration is given by the simplicial complexes that are generated when all points inside spheres of radius $\varepsilon$ at every point are connected. Naturally, a \textbf{filtered} simplicial complex is a simplicial complex partnered with a filtration. The persistence of a certain homology on $K$ is given by the number of sub-complexes that display that homology. 
+
+Computationally, the Rips filtration can be relatively easy to calculate. When armed with a point cloud and some distance metric, the distances between each point and every other point can be placed in a matrix where the $ij^{th}$ entry is the distance between the $i^{th}$ and $j^{th}$ point. This type of matrix is called an \textit{explicit metric space}. Naturally, the diagonal entries in such a matrix are zero, and the matrix is symmetric. A step in the filtration can then be calculated by connecting the points inside balls with a radius equal to one the distances given in the explicit metric space. Iterating over all unique entries in the matrix will guarantee that no feature is missed. However, this is computationally expensive, so it is generally better to choose a coarser filtration based on the data.
 
 The persistence of homologies in a filtered simplicial complex can be represented visually by a ``barcode'' that keeps track of the homologies of each sub-complex. When a new homology appears, it is said to be \textit{born}, and when it disappears, it \textit{dies}.
 \begin{figure}[!htbp]
